@@ -7,7 +7,6 @@ This project consists of two main parts: a Node.js backend and a React.js fronte
 Make sure you have the following installed on your machine:
 - Node.js (v14.x or higher)
 - npm (v6.x or higher)
-- MySQL (v5.7 or higher)
 
 ## Backend (Node.js)
 
