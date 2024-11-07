@@ -7,6 +7,7 @@ This project consists of two main parts: a Node.js backend and a React.js fronte
 Make sure you have the following installed on your machine:
 - Node.js (v14.x or higher)
 - npm (v6.x or higher)
+- MySQL (v5.7 or higher)
 
 ## Backend (Node.js)
 
@@ -27,6 +28,36 @@ Make sure you have the following installed on your machine:
 1. Copy the `.env example` file to `.env` and update the environment variables as needed:
     ```sh
     cp .env\ example .env
+    ```
+
+2. Update the database configuration in the `Nodejs/src/config/config.json` file to match your MySQL setup:
+    ```json
+    {
+      "development": {
+        "username": "root",
+        "password": null,
+        "database": "charity_management_db",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "logging": false,
+        "query": {
+          "raw": true
+        },
+        "timezone": "+07:00"
+      }
+    }
+    ```
+
+### Database Setup
+
+1. Create the database in MySQL:
+    ```sql
+    CREATE DATABASE your_database_name;
+    ```
+
+2. Run the migrations to set up the database schema:
+    ```sh
+    npx sequelize-cli db:migrate
     ```
 
 ### Running the Server
