@@ -5,7 +5,7 @@ This project consists of two main parts: a Node.js backend and a React.js fronte
 ## Prerequisites
 
 Make sure you have the following installed on your machine:
-- Node.js (v14.x or higher)
+- Node.js (v14.17.0)
 - npm (v6.x or higher)
 
 ## Backend (Node.js)
