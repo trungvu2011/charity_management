@@ -15,7 +15,7 @@ import Home from '../routes/Home';
 import Login from './Auth/Login';
 import Header from './Header/Header';
 import System from '../routes/System';
-import HomePage from './HomePage/HomePage';
+import HomePage from './Header/HomePage';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
