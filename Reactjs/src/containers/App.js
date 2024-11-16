@@ -13,7 +13,7 @@ import { path } from '../utils'
 import Home from '../routes/Home';
 // import Login from '../routes/Login';
 import Login from './Auth/Login';
-import Header from './HomePage/Header';
+import Header from './HomePage/Header/Header';
 import System from '../routes/System';
 import HomePage from './HomePage/HomePage';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HomeHeader from './HomeHeader';
+import HomeHeader from './Header/HomeHeader';
 import Banner from './Banner/Banner';
 
 class HomePage extends Component {

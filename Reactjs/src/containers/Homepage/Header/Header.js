@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from "../../store/actions";
-import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+import * as actions from "../../../store/actions";
+import Navigator from '../../../components/Navigator';
+import { adminMenu } from '../menuApp';
 import './Header.scss';
 
 class Header extends Component {
@@ -18,7 +18,7 @@ class Header extends Component {
                     <Navigator menus={adminMenu} />
                 </div>
 
-                {/* nút logout */}
+                {/* nút logout  */}
                 <div className="btn btn-logout" onClick={processLogout}>
                     <i className="fas fa-sign-out-alt"></i>
                 </div>
