@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from './Header/HomeHeader';
 import Banner from './Banner/Banner';
+import CampaignByOrganization from './Section/CampaignByOrganization';
 
 class HomePage extends Component {
 
     render() {
         return (
             <div>
-                <div>
-                    <HomeHeader/>
-                </div>
-                <div>
-                    <Banner/>
-                </div>
+                <HomeHeader/>
+                <Banner/>
+                <CampaignByOrganization/>
             </div>
         );
     }
