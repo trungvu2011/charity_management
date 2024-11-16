@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
-import SearchBar from '../Header/SearchBar';
+import SearchBar from './SearchBar';
 
 class HomeHeader extends Component {
 

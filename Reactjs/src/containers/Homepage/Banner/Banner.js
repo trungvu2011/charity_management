@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Banner.scss';
-import bannerImg from '../../assets/banner-img.png';
+import bannerImg from '../../../assets/banner-img.png';
 
 class Banner extends Component {
     render() {
