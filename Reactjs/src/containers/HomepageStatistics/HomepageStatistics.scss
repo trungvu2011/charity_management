@@ -1,0 +1,41 @@
+.home-statistics-container {
+    height: 800px;
+    padding: 32px 80px;
+    background: linear-gradient(281deg, #f54a00, #ff9252 102.8%);
+    display: flex;
+    flex-direction: column;
+    .feature-container {
+        display: flex;
+        justify-content: center;
+        .feature-item {
+            width: 40%;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 16px;
+            .item-top {
+                background-color: #e2e2e2;
+                font-size: 20px;
+                color: #000;
+                font-weight: 700;
+                padding: 12px;
+                text-align: center;
+            }
+            .item-body {
+                background-color: #fff;
+                display: flex;
+                padding: 16px;
+                .check-icon {
+                    width: 10%;
+                    display: flex;
+                    align-self: first baseline;
+                }
+                .item-description {
+                    font-size: 15px;
+                    line-height: 1.4;
+                    padding-left: 8px;
+                }
+            }
+        }
+    }
+}
