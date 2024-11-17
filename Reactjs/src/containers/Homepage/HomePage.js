@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from './Header/HomeHeader';
 import Banner from './Banner/Banner';
-import CampaignByOrganization from './Section/CampaignByOrganization';
+import Campaign from './Section/Campaign';
 
 class HomePage extends Component {
 
@@ -11,7 +11,8 @@ class HomePage extends Component {
             <div>
                 <HomeHeader/>
                 <Banner/>
-                <CampaignByOrganization/>
+                <Campaign/>
+                <div style={{height: '300px'}}></div>
             </div>
         );
     }

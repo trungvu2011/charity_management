@@ -1,0 +1,195 @@
+.section-campaign {
+    height: 1200px;
+    background: #f5f5f5;
+    border: 1px solid red;
+
+    .campaign-title {
+        margin-top: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .campaign-title::before {
+        content: "";
+        display: block;
+        width: 64px;
+        height: 2px;
+        border-radius: 4px;
+        background: #f54a00;
+        margin-right: 15px;
+    }
+
+    .campaign-title::after {
+        content: "";
+        display: block;
+        width: 64px;
+        height: 2px;
+        border-radius: 4px;
+        background: #f54a00;
+        margin-left: 15px;
+    }
+
+    .campaign-container {
+        height: 500px;
+        margin: 0 50px;
+        display: flex;
+        flex-direction: column;
+
+        .campaign-header {
+            display: flex;
+            justify-content: space-between; // Đặt khoảng cách giữa các phần tử
+            align-items: center; // Căn giữa theo chiều dọc
+            padding: 10px 0;
+            background-color: transparent; // Màu nền nhạt giống như ảnh
+            font-weight: bold;
+            margin: 10px 15px;
+
+            .create-by {
+                font-size: 17px; // Kích thước chữ tiêu đề
+                color: #333; // Màu chữ tối
+                font-weight: normal;
+
+                span {
+                    font-weight: bold; // Làm chữ "Tổ chức" nhẹ hơn
+                }
+            }
+
+            .see-more {
+                font-size: 1.2rem; // Kích thước nhỏ hơn tiêu đề
+                color: #ff5722; // Màu cam nổi bật
+                cursor: pointer;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline; // Gạch chân khi hover
+                }
+            }
+
+        }
+
+        .campaign-body {
+
+
+            .campaign-card {
+                flex: 1;
+                background-color: #fff; // Màu nền của mỗi thẻ
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Hiệu ứng đổ bóng
+                overflow: hidden;
+                transition: transform 0.3s ease;
+                height: auto;
+                position: relative;
+
+                .remaining-days {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    background-color: #dad0c2; // Nền của ô "Còn X ngày"
+                    color: #fff;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    font-size: 0.875rem;
+                    z-index: 10;
+                }
+
+                .card-header {
+                    background-color: #f7f9fc; // Màu nền của phần header
+                    padding: 15px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: #333;
+
+
+                }
+
+                .card-image {
+                    display: block;
+                    position: relative;
+                    height: 280px;
+                    background-size: cover;
+                    background-position: center;
+                    border-bottom: 1px solid #eee;
+                }
+
+                .card-title {
+                    margin: 10px 15px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .card-meta {
+                    margin: 0 15px;
+                    font-size: 0.875rem;
+                    color: #888;
+
+                    .creator {
+                        font-weight: bold;
+                        color: #ff5722; // Màu nhấn cho tên tổ chức
+                    }
+                }
+
+                .progress-bar {
+                    margin: 10px 15px;
+                    height: 8px;
+                    background-color: #eee;
+                    border-radius: 4px;
+                    overflow: hidden;
+
+                    .progress {
+                        width: 50%; // Giá trị phần trăm đạt được
+                        height: 100%;
+                        background-color: #ff5722; // Màu thanh tiến trình
+                        transition: width 0.3s ease;
+                    }
+                }
+
+                .amount-raised {
+                    margin: 10px 15px;
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    color: #333;
+
+                    span {
+                        color: #ff5722; // Màu nhấn cho số tiền
+                    }
+                }
+            }
+
+            // css slick slider css
+            .slick-prev {
+                border: 1px solid green !important;
+                z-index: 1000;
+                height: 32px !important;
+                width: 32px !important;
+                left: -40px !important;
+                border-radius: 50%;
+                background-color: #fecb98 !important;
+            }
+
+            .slick-prev::before,
+            .slick-next::before {
+                font-family: FontAwesome !important;
+                color: #ca5c29da !important;
+            }
+
+            .slick-next {
+                border: 1px solid green !important;
+                height: 32px !important;
+                width: 32px !important;
+                right: -40px !important;
+                border-radius: 50%;
+                background-color: #fecb98 !important;
+            }
+
+        }
+    }
+
+
+}
