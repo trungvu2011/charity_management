@@ -28,7 +28,11 @@ body {
         .header-logo {
             width: 75%;
             height: 75%;
+<<<<<<< HEAD:Reactjs/src/containers/Header/HomeHeader.scss
             background: url('../../assets/images/header/header-logo.png') center center no-repeat;
+=======
+            background: url('../../../assets/header-logo.png') center center no-repeat;
+>>>>>>> 8ff3517dd4038f13b5b429123109ebb30647ecaf:Reactjs/src/containers/Homepage/Header/HomeHeader.scss
             background-size: 75%;
             cursor: pointer;
         }
@@ -67,7 +71,11 @@ body {
             .nav-campaign {
                 width: 75%;
                 height: 75%;
+<<<<<<< HEAD:Reactjs/src/containers/Header/HomeHeader.scss
                 background: url('../../assets/images/header/featured-event.png') center center no-repeat;
+=======
+                background: url('../../../assets/featured-event.png') center center no-repeat;
+>>>>>>> 8ff3517dd4038f13b5b429123109ebb30647ecaf:Reactjs/src/containers/Homepage/Header/HomeHeader.scss
                 background-size: contain;
                 cursor: pointer;
             }
