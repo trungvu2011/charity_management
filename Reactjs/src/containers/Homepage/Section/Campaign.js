@@ -16,6 +16,26 @@ class Campaign extends Component {
             speed: 500,
             slidesToShow: 3,
             slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
+                    }
+                }
+            ],
         };
         return (
             <div className='section-campaign'>
@@ -31,7 +51,7 @@ class Campaign extends Component {
                     </div>
                     <div className='campaign-body'>
                         <Slider {...settings}>
-                            <div className='campaign-card'>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 1</div>
@@ -44,8 +64,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
@@ -59,8 +79,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 3</div>
@@ -73,8 +93,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 4</div>
@@ -87,8 +107,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 5</div>
@@ -101,8 +121,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 6</div>
@@ -115,7 +135,7 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
+                            </a>
                         </Slider>
 
                     </div>
@@ -129,7 +149,7 @@ class Campaign extends Component {
                     </div>
                     <div className='campaign-body'>
                         <Slider {...settings}>
-                            <div className='campaign-card'>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 1</div>
@@ -142,8 +162,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
@@ -157,8 +177,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 3</div>
@@ -171,8 +191,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 4</div>
@@ -185,8 +205,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 5</div>
@@ -199,8 +219,8 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
-                            <div className='campaign-card'>
+                            </a>
+                            <a className='campaign-card' href="#">
                                 <span className="remaining-days">Còn 31 ngày</span>
                                 <img className='card-image' src={campaignImg} alt='campaign' />
                                 <div className='campaign-header'>HiGreen - Vì Trường Sa Xanh 6</div>
@@ -213,7 +233,7 @@ class Campaign extends Component {
                                 <div className="amount-raised">
                                     Đã đạt được <span>22.839.927 VND</span>
                                 </div>
-                            </div>
+                            </a>
                         </Slider>
 
                     </div>
