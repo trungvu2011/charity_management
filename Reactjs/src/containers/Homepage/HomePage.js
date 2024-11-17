@@ -16,7 +16,6 @@ class HomePage extends Component {
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => {
