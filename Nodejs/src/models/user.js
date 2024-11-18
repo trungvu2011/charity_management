@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'organization_id',
       });
 
-      User.hasMany(models.Donor, {
-        foreignKey: 'donor_id',
+      User.hasMany(models.User, {
+        foreignKey: 'user_id',
       });
     }
   };

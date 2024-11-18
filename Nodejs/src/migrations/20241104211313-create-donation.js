@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Campaigns', key: 'campaign_id' }
       },
-      donor_id: {
+      user_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'Donors', key: 'donor_id' }
+        references: { model: 'Users', key: 'user_id' }
       },
       amount: {
         type: Sequelize.DECIMAL
