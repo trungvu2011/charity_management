@@ -18,7 +18,7 @@ class Campaign extends Component {
             slidesToScroll: 1,
             responsive: [
                 {
-                    breakpoint: 1024,
+                    breakpoint: 1023,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 1,
@@ -27,7 +27,7 @@ class Campaign extends Component {
                     }
                 },
                 {
-                    breakpoint: 768,
+                    breakpoint: 767,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1,
