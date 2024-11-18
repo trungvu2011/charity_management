@@ -12,16 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Campaign, {
-        foreignKey: 'user_id',
+        foreignKey: 'campaign_id',
+        as: 'campaign'
       });
 
       // If User is Organiazation, additional organization information may be available
       User.hasOne(models.Organization, {
         foreignKey: 'organization_id',
-      });
-
-      User.hasMany(models.User, {
-        foreignKey: 'user_id',
       });
     }
   };

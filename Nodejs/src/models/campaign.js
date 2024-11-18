@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       // Relationship with TransactionRecords table
       Campaign.hasMany(models.TransactionRecord, {
         foreignKey: 'transaction_id',
-        as: 'tranaction'
+        as: 'transaction'
       });
       // Relationship with Reports table
       Campaign.hasMany(models.Report, {
         foreignKey: 'report_id',
+        as: 'report'
       });
     }
   };
@@ -37,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       references: { model: 'Users', key: 'user_id' }
     },
     title: DataTypes.STRING,
+    img: DataTypes.STRING,
     description: DataTypes.TEXT,
     goal_amount: DataTypes.DECIMAL,
     start_date: DataTypes.DATE,
