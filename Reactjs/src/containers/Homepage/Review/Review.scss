@@ -1,0 +1,143 @@
+.review {
+    height: 120vh;
+    background: #f5f5f5;
+
+    .review-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .review-title::before {
+        content: "";
+        display: block;
+        width: 64px;
+        height: 2px;
+        border-radius: 4px;
+        background: #f54a00;
+        margin-right: 15px;
+    }
+
+    .review-title::after {
+        content: "";
+        display: block;
+        width: 64px;
+        height: 2px;
+        border-radius: 4px;
+        background: #f54a00;
+        margin-left: 15px;
+    }
+
+    .review-container {
+        height: 500px;
+        margin: 0 50px;
+        display: flex;
+        flex-direction: column;
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            background-color: transparent;
+            font-weight: bold;
+            margin: 10px 15px;
+        }
+
+        .review-body {
+
+
+            .review-card {
+                flex: 1;
+                background-color: transparent;
+                height: 80vh;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+
+                .card-top {
+
+                    img {
+                        border: 3px solid #ff9431;
+                        padding: 5px;
+                        margin-left: 20px;
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        margin-bottom: 20px;
+                        position: absolute;
+                    }
+                }
+
+                .card-bottom {
+                    margin-top: 85px;
+                    border: 1px solid transparent;
+                    height: 600px;
+                    background-color: white;
+                    border-radius: 10px;
+
+                    h4 {
+                        margin-top: 100px;
+                        font-weight: bold;
+                        font-size: 18px;
+                        margin-left: 40px;
+                        margin-right: 30px;
+                    }
+
+                    h5 {
+                        margin-left: 40px;
+                        margin-right: 30px;
+                        font-size: 16px;
+                        color: #f54a00;
+                        margin-bottom: 16px;
+                    }
+
+                    p {
+                        font-size: 16px;
+                        margin-left: 40px;
+                        margin-right: 30px;
+                    }
+                }
+            }
+
+            // css slick slider css
+            .slick-slider {
+                margin: 0 auto;
+            }
+
+            .slick-slide {
+                padding: 0 16px !important;
+            }
+
+            .slick-prev {
+                z-index: 1000;
+                height: 32px !important;
+                width: 32px !important;
+                left: -40px !important;
+                border-radius: 50%;
+                background-color: #fecb98 !important;
+            }
+
+            .slick-prev::before,
+            .slick-next::before {
+                font-family: FontAwesome !important;
+                color: #ca5c29da !important;
+            }
+
+            .slick-next {
+                height: 32px !important;
+                width: 32px !important;
+                right: -40px !important;
+                border-radius: 50%;
+                background-color: #fecb98 !important;
+            }
+        }
+    }
+
+
+}

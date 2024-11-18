@@ -5,6 +5,7 @@ import Banner from './Banner/Banner';
 import Campaign from './Section/Campaign';
 import Introduction from '../Introduction/Introduction';
 import Footer from '../Footer/Footer';
+import Review from './Review/Review';
 
 class HomePage extends Component {
 
@@ -15,6 +16,7 @@ class HomePage extends Component {
                 <Banner />
                 <Introduction />
                 <Campaign />
+                <Review />
                 <Footer />
             </div>
         );
