@@ -15,6 +15,25 @@ class Review extends Component {
             speed: 500,
             slidesToShow: 3,
             slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1023,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false,
+                    }
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        initialSlide: 1
+                    }
+                }
+            ]
         };
         return (
             <div className="review">
@@ -35,6 +54,7 @@ class Review extends Component {
                                         Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
                                     </p>
                                 </div>
+                                <div className='custom-shape'></div>
                             </div>
                             <div className='review-card'>
                                 <div className='card-top'>
@@ -47,6 +67,7 @@ class Review extends Component {
                                         Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
                                     </p>
                                 </div>
+                                <div className='custom-shape'></div>
                             </div>
                             <div className='review-card'>
                                 <div className='card-top'>
@@ -59,6 +80,7 @@ class Review extends Component {
                                         Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
                                     </p>
                                 </div>
+                                <div className='custom-shape'></div>
                             </div>
                             <div className='review-card'>
                                 <div className='card-top'>
@@ -71,6 +93,7 @@ class Review extends Component {
                                         Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
                                     </p>
                                 </div>
+                                <div className='custom-shape'></div>
                             </div>
                             <div className='review-card'>
                                 <div className='card-top'>
@@ -83,6 +106,7 @@ class Review extends Component {
                                         Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
                                     </p>
                                 </div>
+                                <div className='custom-shape'></div>
                             </div>
                             <div className='review-card'>
                                 <div className='card-top'>
@@ -95,6 +119,7 @@ class Review extends Component {
                                         Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
                                     </p>
                                 </div>
+                                <div className='custom-shape'></div>
                             </div>
                         </Slider>
                     </div>
