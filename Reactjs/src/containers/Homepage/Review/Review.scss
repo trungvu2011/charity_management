@@ -1,5 +1,5 @@
 .review {
-    height: 100vh;
+    height: 120vh;
     background: #f5f5f5;
 
     .review-title {
@@ -41,34 +41,12 @@
 
         .review-header {
             display: flex;
-            justify-content: space-between; // Đặt khoảng cách giữa các phần tử
-            align-items: center; // Căn giữa theo chiều dọc
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 0;
-            background-color: transparent; // Màu nền nhạt giống như ảnh
+            background-color: transparent;
             font-weight: bold;
             margin: 10px 15px;
-
-            .create-by {
-                font-size: 17px; // Kích thước chữ tiêu đề
-                color: #333; // Màu chữ tối
-                font-weight: normal;
-
-                span {
-                    font-weight: bold; // Làm chữ "Tổ chức" nhẹ hơn
-                }
-            }
-
-            .see-more {
-                font-size: 1.2rem; // Kích thước nhỏ hơn tiêu đề
-                color: #ff5722; // Màu cam nổi bật
-                cursor: pointer;
-                text-decoration: none;
-
-                &:hover {
-                    text-decoration: underline; // Gạch chân khi hover
-                }
-            }
-
         }
 
         .review-body {
@@ -83,26 +61,30 @@
                 flex-direction: column;
 
                 .card-top {
+
                     img {
+                        border: 3px solid #ff9431;
+                        padding: 5px;
                         margin-left: 20px;
-                        width: 100px;
-                        height: 100px;
+                        width: 150px;
+                        height: 150px;
                         border-radius: 50%;
                         margin-bottom: 20px;
+                        position: absolute;
                     }
                 }
 
                 .card-bottom {
-                    margin-top: -60px;
+                    margin-top: 85px;
                     border: 1px solid transparent;
-                    height: 400px;
+                    height: 600px;
                     background-color: white;
                     border-radius: 10px;
 
                     h4 {
-                        margin-top: 70px;
+                        margin-top: 100px;
                         font-weight: bold;
-                        font-size: 16px;
+                        font-size: 18px;
                         margin-left: 40px;
                         margin-right: 30px;
                     }
@@ -110,13 +92,13 @@
                     h5 {
                         margin-left: 40px;
                         margin-right: 30px;
-                        font-size: 14px;
+                        font-size: 16px;
                         color: #f54a00;
                         margin-bottom: 16px;
                     }
 
                     p {
-                        font-size: 14px;
+                        font-size: 16px;
                         margin-left: 40px;
                         margin-right: 30px;
                     }
