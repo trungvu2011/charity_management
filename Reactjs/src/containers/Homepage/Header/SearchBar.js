@@ -7,6 +7,7 @@ class SearchBar extends Component {
         return (
             <div className='search-bar-container'>
             <input type='text' className='search-bar-input' placeholder=' Tìm kiếm tên chiến dịch' style={{fontFamily: 'Helvetica, Arial, sans-serif'}}/>
+            <i className="fas fa-search"></i>
             </div>
         )
     }
