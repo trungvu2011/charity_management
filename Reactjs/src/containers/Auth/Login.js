@@ -11,16 +11,16 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
             isShowPassword: false,
             errMessage: ''
         }
     }
 
-    handleOnChangeUsername = (event) => {
+    handleOnChangeEmail = (event) => {
         this.setState({
-            username: event.target.value
+            email: event.target.value
         })
     }
 
@@ -36,14 +36,15 @@ class Login extends Component {
         })
 
         try {
-            let data = await handleLoginApi(this.state.username, this.state.password);
+            let data = await handleLoginApi(this.state.email, this.state.password);
             if (data && data.errCode !== 0) {
                 this.setState({
                     errMessage: data.message
                 })
             }
             if (data && data.errCode === 0) {
-                this.props.userLoginSuccess(data.user);
+                localStorage.setItem('userInfo', JSON.stringify(data.user));
+                this.props.navigate('/home');
             }
         } catch (error) {
             if (error.response) {
@@ -75,15 +76,15 @@ class Login extends Component {
                         <div className='login-title'>Đăng nhập</div>
                         <div className='input-box'>
                             <label>Email</label>
-                            <input type='text' placeholder='Nhập địa chỉ email' value={this.state.username} onChange={(event) => this.handleOnChangeUsername(event)} />
+                            <input type='text' placeholder='Nhập địa chỉ email' value={this.state.email} onChange={(event) => this.handleOnChangeEmail(event)} />
                         </div>
                         <div className='input-box'>
                             <label>Mật khẩu</label>
                             <input type={this.state.isShowPassword ? 'text' : 'password'} placeholder='Nhập mật khẩu' value={this.state.password} onChange={(event) => this.handleOnChangePassword(event)} />
-                            <span 
-                                onClick={() => {this.handleShowPassword()}}
-                                >
-                                <i className={this.state.isShowPassword ? "far fa-eye" : "far fa-eye-slash"}/>
+                            <span
+                                onClick={() => { this.handleShowPassword() }}
+                            >
+                                <i className={this.state.isShowPassword ? "far fa-eye" : "far fa-eye-slash"} />
                             </span>
                         </div>
                         <div className='forgot-password'>
@@ -110,7 +111,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        // userLoginFail: () => dispatch(actions.userLoginFail()),
+        userLoginFail: () => dispatch(actions.userLoginFail()),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };

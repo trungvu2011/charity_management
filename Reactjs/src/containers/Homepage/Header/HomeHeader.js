@@ -4,8 +4,39 @@ import './HomeHeader.scss';
 import SearchBar from './SearchBar';
 
 class HomeHeader extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userInfo: null,
+            isMenuOpen: false,
+        };
+    }
+
+    componentDidMount() {
+        // Lấy thông tin người dùng từ localStorage
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            this.setState({ userInfo: JSON.parse(userInfo) });
+        }
+    }
+
+    handleToggleMenu = () => {
+        this.setState((prevState) => ({ isMenuOpen: !prevState.isMenuOpen }));
+    };
+
+    handleLogout = () => {
+        // Xóa thông tin người dùng khỏi localStorage và cập nhật Redux
+        localStorage.removeItem('userInfo');
+        this.setState({ userInfo: null });
+        // Thực hiện thêm hành động Redux nếu cần
+        // this.props.processLogout();
+        window.location.reload(); // Reload lại trang hoặc điều hướng
+    };
 
     render() {
+        const { userInfo, isMenuOpen } = this.state;
+        const isLoggedIn = !!userInfo; // Kiểm tra đăng nhập
+
         return (
             <div className='home-header-container'>
                 <div className='home-header-content'>
@@ -15,34 +46,56 @@ class HomeHeader extends Component {
                     <div className='center-content'>
                         <ul className='header-nav'>
                             <li><a href=''>Giới thiệu</a></li>
-                            <li><a c href=''>Chiến dịch</a></li>
+                            <li><a href=''>Chiến dịch</a></li>
                             <li><div className='nav-campaign' href=''></div></li>
                         </ul>
                     </div>
                     <div className='right-content'>
                         <div className='header-search'>
-                            <SearchBar/>
+                            <SearchBar />
                         </div>
-                        <div className='header-login'>
-                            <a href=''>Đăng nhập</a>
-                        </div>
+
+                        {isLoggedIn && userInfo ? (
+                            <>
+                                <div>
+                                    <i className='fas fa-bell bell-noti'></i>
+                                </div>
+                                <div className='user-menu'>
+                                    <i className='fas fa-user user-avatar'
+                                        onClick={this.handleToggleMenu}>
+
+                                    </i>
+                                    {isMenuOpen && (
+                                        <div className='menu-dropdown'>
+                                            <ul>
+                                                <li>
+                                                    <a href='/profile'>Chỉnh sửa thông tin</a>
+                                                </li>
+                                                <li onClick={this.handleLogout}>
+                                                    Đăng xuất
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </>
+
+                        ) : (
+                            <div className='header-login'>
+                                <a href='/login'>Đăng nhập</a>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default connect(mapStateToProps)(HomeHeader);

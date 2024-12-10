@@ -20,7 +20,6 @@ let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try {
             let userData = {};
-
             let isExist = await checkUserEmail(email);
             if (isExist) {
                 let user = await db.User.findOne({
@@ -29,8 +28,8 @@ let handleUserLogin = (email, password) => {
                     raw: true
                 });
                 if (user) {
-                    let check = await bcrypt.compareSync(password, user.password);
-                    if (check) {
+                    let check = bcrypt.compareSync(password, user.password);
+                    if (password === user.password || check) {
                         userData.errCode = 0;
                         userData.errMessage = `OK!`;
                         delete user.password;
@@ -55,9 +54,45 @@ let handleUserLogin = (email, password) => {
     });
 };
 
+let handleUserRegister = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let check = await checkUserEmail(data.email);
+            if (check === true) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Your email is already in used, please try another email!'
+                });
+            }
+            else {
+                let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                let newUser = await db.User.create({
+                    email: data.email,
+                    password: hashPasswordFromBcrypt,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    phonenumber: data.phonenumber,
+                    userType: data.userType
+
+                });
+                resolve({
+                    errCode: 0,
+                    errMessage: 'OK!',
+                    newUser
+                });
+            }
+        } catch (error) {
+            reject(error);
+        }
+    }
+    )
+};
+
 let checkUserEmail = (email) => {
     return new Promise(async (resolve, reject) => {
         try {
+
             let user = await db.User.findOne({
                 where: { email: email }
             });
@@ -194,9 +229,10 @@ let updateUserData = (data) => {
 
 module.exports = {
     handleUserLogin: handleUserLogin,
+    handleUserRegister: handleUserRegister,
     checkUserEmail: checkUserEmail,
     getAllUsers: getAllUsers,
     createNewUser: createNewUser,
     deleteUser: deleteUser,
-    updateUserData: updateUserData
+    updateUserData: updateUserData,
 };

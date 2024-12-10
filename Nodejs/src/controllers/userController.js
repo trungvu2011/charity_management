@@ -13,11 +13,12 @@ let handleLogin = async (req, res) => {
 
     let userData = await userService.handleUserLogin(email, password);
 
-    return res.status(200).json({
-        errCode: userData.errCode,
-        errMessage: userData.errMessage,
-        user: userData.user ? userData.user : {}
-    });
+    return res.status(200).json(userData);
+}
+
+let handleRegister = async (req, res) => {
+    let message = await userService.handleUserRegister(req.body);
+    return res.status(200).json(message);
 }
 
 let handleGetAllUsers = async (req, res) => {
@@ -64,8 +65,9 @@ let handleDeleteUser = async (req, res) => {
 
 module.exports = {
     handleLogin: handleLogin,
+    handleRegister: handleRegister,
     handleGetAllUsers: handleGetAllUsers,
     handleCreateNewUser: handleCreateNewUser,
     handleEditUser: handleEditUser,
-    handleDeleteUser: handleDeleteUser
+    handleDeleteUser: handleDeleteUser,
 }

@@ -23,7 +23,7 @@ module.exports = {
         title: 'Xây Nhà An Toàn - Vững Vàng Qua Lũ: Chung tay hướng về Miền Trung',
         img: "https://static.thiennguyen.app/public/donate-target/photo/2024/9/19/23d80979-7274-40f3-9c60-ce98865cdac3.jpg",
         description: "Chung tay hỗ trợ bà con miền Trung xây nhà an toàn, vững vàng vượt qua bão lũ!",
-        goal_amount: 2720000000,
+        goal_amount: 272000000,
         start_date: new Date(),
         end_date: new Date(new Date().setDate(today.getDate() + 30)),
         status: 1,
