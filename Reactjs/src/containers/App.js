@@ -14,6 +14,7 @@ import Register from './Auth/Register';
 import Header from './Homepage/Header/Header';
 import System from '../routes/System';
 import HomePage from './Homepage/HomePage';
+import UserEditPage from './User/UserEditPage.js';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 import CustomScrollbars from '../components/CustomScrollbars';
@@ -52,8 +53,8 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.REGISTER} component={userIsNotAuthenticated(Register)} />
-                                    <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.HOMEPAGE} component={(HomePage)} />
+                                    <Route path={path.USER_EDIT} component={(UserEditPage)} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>

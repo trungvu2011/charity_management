@@ -33,6 +33,10 @@ class HomeHeader extends Component {
         window.location.reload(); // Reload lại trang hoặc điều hướng
     };
 
+    handleNavigateHome = () => {
+        window.location.href = '/home';
+    };
+
     render() {
         const { userInfo, isMenuOpen } = this.state;
         const isLoggedIn = !!userInfo; // Kiểm tra đăng nhập
@@ -41,7 +45,7 @@ class HomeHeader extends Component {
             <div className='home-header-container'>
                 <div className='home-header-content'>
                     <div className='left-content'>
-                        <div className='header-logo'></div>
+                        <div className='header-logo' onClick={this.handleNavigateHome}></div>
                     </div>
                     <div className='center-content'>
                         <ul className='header-nav'>
@@ -69,7 +73,7 @@ class HomeHeader extends Component {
                                         <div className='menu-dropdown'>
                                             <ul>
                                                 <li>
-                                                    <a href='/profile'>Chỉnh sửa thông tin</a>
+                                                    <a href='/user-edit'>Chỉnh sửa thông tin</a>
                                                 </li>
                                                 <li onClick={this.handleLogout}>
                                                     Đăng xuất
