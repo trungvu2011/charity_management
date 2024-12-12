@@ -49,8 +49,8 @@ class HomeHeader extends Component {
                     </div>
                     <div className='center-content'>
                         <ul className='header-nav'>
-                            <li><a href=''>Giới thiệu</a></li>
-                            <li><a href=''>Chiến dịch</a></li>
+                            <li><a href='/'>Giới thiệu</a></li>
+                            <li><a href='/campaigns'>Chiến dịch</a></li>
                             <li><div className='nav-campaign' href=''></div></li>
                         </ul>
                     </div>

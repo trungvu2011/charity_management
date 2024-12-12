@@ -18,6 +18,7 @@ import UserEditPage from './User/UserEditPage.js';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 import CustomScrollbars from '../components/CustomScrollbars';
+import Campaigns from './Campaigns/Campaigns.jsx';
 
 class App extends Component {
 
@@ -53,6 +54,7 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.REGISTER} component={userIsNotAuthenticated(Register)} />
+                                    <Route path={path.CAMPAIGNS} component={Campaigns} />
                                     <Route path={path.HOMEPAGE} component={(HomePage)} />
                                     <Route path={path.USER_EDIT} component={(UserEditPage)} />
                                 </Switch>
