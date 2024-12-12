@@ -27,10 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       references: { model: 'Campaigns', key: 'campaign_id' }
     },
-    amount: DataTypes.DECIMAL,
+    amount: DataTypes.BIGINT,
     transaction_date: {
       type: DataTypes.DATE,
-      amount: DataTypes.DECIMAL,
+      amount: DataTypes.BIGINT,
       defaultValue: DataTypes.NOW
     },
     description: DataTypes.TEXT

@@ -17,7 +17,7 @@ module.exports = {
         references: { model: 'Users', key: 'user_id' }
       },
       amount: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.BIGINT
       },
       donation_date: {
         type: Sequelize.DATE

@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     img: DataTypes.STRING,
     description: DataTypes.TEXT,
-    goal_amount: DataTypes.DECIMAL(10, 2),
+    goal_amount: DataTypes.BIGINT,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
     status: DataTypes.BOOLEAN // 0 = inactive, 1 = active

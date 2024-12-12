@@ -13,7 +13,7 @@ module.exports = {
         references: { model: 'Campaigns', key: 'campaign_id' }
       },
       amount: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.BIGINT
       },
       createdAt: {
         allowNull: false,

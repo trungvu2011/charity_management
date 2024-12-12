@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       goal_amount: {
-        type: Sequelize.DECIMAL(10, 2)
+        type: Sequelize.BIGINT
       },
       start_date: {
         type: Sequelize.DATE
