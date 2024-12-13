@@ -50,7 +50,7 @@ class Campaign extends Component {
             <a className='campaign-card' href="#" key={index}>
                 <span className="remaining-days">Còn {campaign.remainingDays} ngày</span>
                 <img className='card-image' src={campaign.img} alt='campaign' />
-                <div className='campaign-header'>{campaign.title}</div>
+                <div className='card-header'>{campaign.title}</div>
                 <div className="card-meta">
                     Tạo bởi <span className="creator">{campaign.creator}</span>
                 </div>
@@ -61,7 +61,10 @@ class Campaign extends Component {
                     <div className="progress" style={{ width: `${campaign.progress}%` }}></div>
                 </div>
                 <div className="goal-amount">
-                    Mục tiêu <span>{formatCurrency(campaign.goal_amount)}</span>
+                    <span>
+                        Mục tiêu: <span style={{ color: '#ff5722' }}>{formatCurrency(campaign.goal_amount)}</span>
+                    </span>
+                    <span>{campaign.progress}%</span>
                 </div>
             </a>
         ));
