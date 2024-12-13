@@ -40,12 +40,15 @@
         flex-direction: column;
 
         .campaign-header {
-            display: flex;
             justify-content: space-between; // Đặt khoảng cách giữa các phần tử
             align-items: center; // Căn giữa theo chiều dọc
             padding: 10px 0;
             background-color: transparent; // Màu nền nhạt giống như ảnh
-            font-size: 17px;
+            height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis; // Hiển thị dấu "..." khi nội dung quá dài
+            display: -webkit-box;
+            font-size: 16px;
             font-weight: bold;
             color: #393939;
             margin: 10px 15px;
@@ -146,6 +149,16 @@
                 }
 
                 .amount-raised {
+                    margin: 10px 15px;
+                    color: #333;
+
+                    span {
+                        font-size: 16px;
+                        color: #ff5722; // Màu nhấn cho số tiền
+                    }
+                }
+
+                .goal-amount {
                     margin: 10px 15px;
                     color: #333;
 
