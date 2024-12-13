@@ -18,7 +18,7 @@ import UserEditPage from './User/UserEditPage.js';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 import CustomScrollbars from '../components/CustomScrollbars';
-import Campaigns from './Campaigns/Campaigns.jsx';
+import Campaigns from './Campaigns/Campaigns.js';
 
 class App extends Component {
 
