@@ -1,10 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from "../Homepage/Banner/Banner";
 import HomeHeader from "../Homepage/Header/HomeHeader";
 import { HiOutlineSearch } from "react-icons/hi";
+import axios from 'axios';
+import CampaignCard from './CampaignCard';
 
 const Campaigns = () => {
     const [contributorType, setContributorType] = useState('Tất cả');
+    const [status, setStatus] = useState('Đang thực hiện');
+    const [campaigns, setCampaigns] = useState([]);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchCampaigns = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
+                setCampaigns(response.data);
+            } catch (error) {
+                setError(error);
+            }
+        }
+
+        fetchCampaigns();
+    }, []);
+
+    const handleStatusChange = async (e) => {
+        try {
+            setStatus(e.target.value);
+            const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
+            setCampaigns(response.data);
+        } catch (error) {
+            setError(error);
+        }
+    }
 
     return (
         <div>
@@ -16,7 +44,7 @@ const Campaigns = () => {
                 </div>
                 <div className="flex flex-row justify-between mb-6">
                     <div className="flex flex-row items-start">
-                        <select name="status" id="" className="h-full pl-4 pt-2 pb-2 pr-8 mr-6 rounded-lg">
+                        <select name="status" id="" className="h-full pl-4 pt-2 pb-2 pr-8 mr-6 rounded-lg" onChange={handleStatusChange}>
                             <option value="Đang thực hiện">Đang thực hiện</option>
                             <option value="Đạt mục tiêu">Đạt mục tiêu</option>
                             <option value="Đã kết thúc">Đã kết thúc</option>
@@ -40,6 +68,11 @@ const Campaigns = () => {
                             {button}
                         </button>
                     ))}
+                </div>
+                <div className='flex flex-row flex-wrap'>
+                    {campaigns.map((campaign) => {
+                        return <CampaignCard key={campaign.campaign_id} campaign={campaign} />
+                    })}
                 </div>
             </div>
         </div>
