@@ -2,6 +2,7 @@ import express from "express";
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import campaignController from "../controllers/campaignController";
+import donationController from "../controllers/donationController";
 
 let router = express.Router();
 
@@ -26,7 +27,10 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-user', userController.handleDeleteUser);
 
     router.get('/api/get-all-campaigns', campaignController.handleGetAllCampaigns);
-
+    
+    router.post('/api/create-new-donation',donationController.handleCreateNewDonation);
+    router.get('/api/get-donation-information',donationController.handleGetDonationInfo);
+    
     return app.use("/", router);
 }
 

@@ -116,6 +116,7 @@ let getAllUsers = (user_id) => {
                     attributes: {
                         exclude: ['password']
                     }
+             
                 });
             }
             if (user_id && user_id !== 'ALL') {

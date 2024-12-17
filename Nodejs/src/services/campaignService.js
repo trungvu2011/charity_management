@@ -40,6 +40,24 @@ let getAllCampaigns = async () => {
     })
 }
 
+let checkCampaignID = (ID) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            let user = await db.User.findOne({
+                where: { ID: ID }
+            });
+            if (user) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 module.exports = {
     getAllCampaigns: getAllCampaigns,
 }
