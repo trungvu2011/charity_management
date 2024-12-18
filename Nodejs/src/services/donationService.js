@@ -37,28 +37,31 @@ let createNewDonation = async (data) => {
 };
 
 
-let getDonationInfo = (donation_id) => {
+let getDonationInfo = (campaign_id) => {
     return new Promise(async (resolve, reject) => {
         try {
             // Tìm donation theo donation_id
-            let donation = await db.Donation.findOne({
-                where: { donation_id: donation_id },
+            let donationList = await db.Donation.findAll({
+                where: { campaign_id: campaign_id },
                 attributes: { exclude: ['createdAt', 'updatedAt'] } // Loại bỏ createdAt, updatedAt
             });
 
-            // Nếu không tìm thấy donation, trả về lỗi
-            if (!donation) {
-                return reject({
-                    errCode: 1,
-                    errMessage: `Không tìm thấy donation với donation_id: ${donation_id}`
+            for (let i = 0; i < donationList.length; i++) {
+                // Tìm thông tin người ủng hộ
+                let user = await db.User.findOne({
+                    where: { user_id: donationList[i].user_id },
+                    attributes: ['lastName', 'firstName']
                 });
+
+                // Thêm thông tin người ủng hộ vào donation
+                donationList[i].setDataValue('name', user.lastName + ' ' + user.firstName);
             }
 
             // Trả về thông tin donation tìm được
             resolve({
                 errCode: 0,
                 errMessage: 'OK!',
-                donation: donation
+                donationList: donationList
             });
 
         } catch (error) {
@@ -72,7 +75,7 @@ let getDonationInfo = (donation_id) => {
 };
 
 
-module.exports ={
-    createNewDonation:createNewDonation,
+module.exports = {
+    createNewDonation: createNewDonation,
     getDonationInfo: getDonationInfo,
 };

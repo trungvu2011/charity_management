@@ -57,6 +57,94 @@ module.exports = {
         userType: false, // Individual
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        firstName: 'Charlie',
+        lastName: 'Davis',
+        email: 'charlie.davis@example.com',
+        password: 'charlie123',
+        phonenumber: '0934567890',
+        address: 'Quang Ngai',
+        userType: false, // Individual
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'Eve',
+        lastName: 'Johnson',
+        email: 'eve.johnson@example.com',
+        password: 'evepass123',
+        phonenumber: '0945678901',
+        address: 'Hanoi',
+        userType: true, // Organization
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'David',
+        lastName: 'Martinez',
+        email: 'david.martinez@example.com',
+        password: 'davidsmith456',
+        phonenumber: '0956789012',
+        address: 'Ho Chi Minh City',
+        userType: false, // Individual
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'Olivia',
+        lastName: 'Garcia',
+        email: 'olivia.garcia@example.com',
+        password: 'oliviapass789',
+        phonenumber: '0967890123',
+        address: 'Da Nang',
+        userType: true, // Organization
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'Liam',
+        lastName: 'Martinez',
+        email: 'liam.martinez@example.com',
+        password: 'liampass101',
+        phonenumber: '0978901234',
+        address: 'Nha Trang',
+        userType: false, // Individual
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'Sophia',
+        lastName: 'Hernandez',
+        email: 'sophia.hernandez@example.com',
+        password: 'sophia456',
+        phonenumber: '0989012345',
+        address: 'Hue',
+        userType: true, // Organization
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'Mason',
+        lastName: 'Lopez',
+        email: 'mason.lopez@example.com',
+        password: 'masonpass987',
+        phonenumber: '0990123456',
+        address: 'Vung Tau',
+        userType: false, // Individual
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        firstName: 'Lucas',
+        lastName: 'Wilson',
+        email: 'lucas.wilson@example.com',
+        password: 'lucas123',
+        phonenumber: '0901234567',
+        address: 'Can Tho',
+        userType: true, // Organization
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {
       validate: true,
