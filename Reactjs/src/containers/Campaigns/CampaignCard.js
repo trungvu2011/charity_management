@@ -1,13 +1,16 @@
 import React from 'react';
-import axios from 'axios';
 
 const CampaignCard = ({ campaign }) => {
     const formatCurrency = (amount) => {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
     };
 
+    const handleClick = () => {
+        window.location.href = `/campaign/${campaign.campaign_id}`;
+    }
+
     return (
-        <div className='flex flex-col w-[30%] h-[480px] m-4 bg-white rounded-xl shadow-md'>
+        <div className='flex flex-col w-[30%] h-[480px] m-4 bg-white rounded-xl shadow-md hover:cursor-pointer' onClick={handleClick}>
             <img src={campaign.img} alt="" className='w-full h-[300px] object-cover rounded-t-xl'/>
             <span className='p-3 text-xl font-extrabold truncate'>{campaign.title}</span>
             <div className='flex flex-row pl-3 pr-3 pb-3'>
