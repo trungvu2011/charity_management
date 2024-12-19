@@ -50,9 +50,11 @@ const Campaigns = () => {
             }
 
             if (searchQuery) {
-                filtered = filtered.filter(campaign =>
-                    campaign.title.toLowerCase().includes(searchQuery.toLowerCase())
-                );
+                filtered = filtered.filter(campaign => {
+                    const normalizedTitle = campaign.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                    const normalizedQuery = searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                    return normalizedTitle.includes(normalizedQuery);
+                });
             }
 
             setFilteredCampaigns(filtered);
@@ -113,7 +115,7 @@ const Campaigns = () => {
                         </button>
                     ))}
                 </div>
-                <div className='flex flex-row flex-wrap'>
+                <div className='flex flex-row flex-wrap mb-8'>
                     {filteredCampaigns.map((campaign) => {
                         return <CampaignCard key={campaign.campaign_id} campaign={campaign} />
                     })}
