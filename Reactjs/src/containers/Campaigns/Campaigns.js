@@ -33,20 +33,16 @@ const Campaigns = () => {
         const filterCampaigns = () => {
             let filtered = campaigns;
 
-            if (contributorType === 'Tất cả') {
-                filtered = campaigns;
-            } else if (contributorType === 'Tổ chức') {
-                filtered = campaigns.filter(campaign => campaign.type === true);
-            } else if (contributorType === 'Cá nhân') {
-                filtered = campaigns.filter(campaign => campaign.type === false);
+            if (contributorType !== 'Tất cả') {
+                filtered = filtered.filter(campaign => 
+                    contributorType === 'Tổ chức' ? campaign.type === true : campaign.type === false
+                );
             }
 
-            if (status === 'Tất cả') {
-                filtered = campaigns;
-            } else if (status === 'Đang thực hiện') {
-                filtered = campaigns.filter(campaign => campaign.status === true);
-            } else if (status === 'Đã kết thúc') {
-                filtered = campaigns.filter(campaign => campaign.status === false);
+            if (status !== 'Tất cả') {
+                filtered = filtered.filter(campaign => 
+                    status === 'Đang thực hiện' ? campaign.status === true : campaign.status === false
+                );
             }
 
             if (searchQuery) {
@@ -61,7 +57,7 @@ const Campaigns = () => {
         };
 
         filterCampaigns();
-    }, [contributorType, campaigns, searchQuery]);
+    }, [contributorType, status, campaigns, searchQuery]);
 
     const handleStatusChange = async (e) => {
         try {

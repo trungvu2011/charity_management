@@ -3,7 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import HomeHeader from "../Homepage/Header/HomeHeader";
 import Footer from "../Footer/Footer";
-import { HiFlag, HiOutlineClock } from "react-icons/hi";
+import { HiFlag, HiMail, HiOutlineClock, HiPhone } from "react-icons/hi";
+import gmail from '../../assets/images/gmail.png';
+import facebook from '../../assets/images/facebook.png';
 
 const CampaignDetail = () => {
     const { state } = useLocation();  // Lấy dữ liệu truyền qua state từ link
@@ -11,6 +13,8 @@ const CampaignDetail = () => {
     const [tab, setTab] = useState('Câu chuyện');
     const [donationInfo, setDonationInfo] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); // State cho tìm kiếm
+
+    console.log(campaign); // Kiểm tra dữ liệu campaign
 
     const formatCurrency = (amount) => {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
@@ -117,7 +121,6 @@ const CampaignDetail = () => {
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)} // Cập nhật giá trị tìm kiếm
                                     />
-
                                 </div>
                                 {donationInfo.length > 0 ? renderDonationInfo() : <p>Chưa có ủng hộ</p>}
                             </div>
@@ -125,10 +128,10 @@ const CampaignDetail = () => {
                     </div>
                 </div>
                 <div className="w-[40%] h-[600px] pr-32 p-6">
-                    <div className="flex flex-col rounded-2xl bg-white shadow-lg">
-                        <div className="flex flex-col border-b-gray-500 border-b-2 p-6">
-                            <div className="flex flex-row">
-                                <div className="w-16 h-16 rounded-full border-[#f54a00] border-2">
+                    <div className="flex flex-col rounded-2xl bg-white shadow-lg mb-8">
+                        <div className="flex flex-col border-b-gray-300 border-b-2 p-6">
+                            <div className="flex flex-row items-center">
+                                <div className="w-18 h-18 rounded-full border-[#f54a00] border-4">
                                     <img alt="creator" src={campaign?.creator.img} className="w-16 h-16 object-cover rounded-full " />
                                 </div>
                                 <div className="flex flex-col ml-4">
@@ -158,13 +161,45 @@ const CampaignDetail = () => {
                                 <div className="bg-[#f54a00] h-3 rounded-full" style={{ width: `${campaign.progress}%` }}></div>
                             </div>
                             <div className="flex flex-row justify-between mt-4">
-                                <div className="flex flex-row">
+                                <div className="flex flex-row items-center">
                                     <span className="text-base font-semibold text-[#6f6f6f]">Đã đạt được</span>
                                     <span className="text-xl font-bold ml-2 text-[#f54a00]">{formatCurrency(campaign.raisedAmount)}</span>
                                 </div>
                                 <span className="text-base font-semibold text-[#6f6f6f]">{campaign.progress} %</span>
                             </div>
                             <button className="w-full bg-gradient-to-r from-[#f54a00] to-[#ff9252] text-xl text-white font-bold rounded-full p-4 mt-4 hover:bg-[#f54a0033]">Ủng hộ</button>
+                        </div>
+                    </div>
+                    <div className="flex flex-col rounded-2xl bg-white shadow-lg">
+                        <div className="flex flex-col border-b-gray-300 border-b-2 p-6">
+                            <span className="text-xl font-bold text-[#393939]">Thông tin nguời vận động</span>
+                        </div>
+                        <div className="flex flex-col p-6">
+                            <div className="flex flex-row">
+                                <div className="w-18 h-18 rounded-full border-[#f54a00] border-4">
+                                    <img alt="creator" src={campaign?.creator.img} className="w-16 h-16 object-cover rounded-full " />
+                                </div>
+                                <div className="flex flex-col ml-4">
+                                    <span className="text-lg font-bold text-[#f54a00] mb-1">{campaign?.creator}</span>
+                                    <div className="w-[50%] p-2 rounded-full bg-[#f54a00b2] flex justify-center items-center">
+                                        <span className="text-white text-sm font-medium">{campaign.type ? 'Tổ chức' : 'Cá nhân'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-col mt-4">
+                                <div className="flex items-center">
+                                    <img alt="gmail" src={gmail} className="w-6 h-6 object-contain mr-4"/>
+                                    <span className="text-base font-semibold text-[#6f6f6f]">...@gmail.com</span>
+                                </div>
+                                <div className="flex items-center mt-3">
+                                <img alt="facebook" src={facebook} className="w-6 h-6 object-contain mr-4"/>
+                                    <a href="" className="no-underline text-base font-semibold text-[#6f6f6f]">Link Facebook</a>
+                                </div>
+                                <div className="flex items-center mt-3">
+                                    <HiPhone className="w-8 h-8 text-green-600 mr-4" />
+                                    <span className="text-base font-semibold text-[#6f6f6f]">SDT</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
