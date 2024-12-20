@@ -3,6 +3,7 @@ import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import campaignController from "../controllers/campaignController";
 import donationController from "../controllers/donationController";
+import reviewController from "../controllers/reviewController.js";
 
 let router = express.Router();
 
@@ -31,6 +32,8 @@ let initWebRoutes = (app) => {
 
     router.post('/api/create-new-donation', donationController.handleCreateNewDonation);
     router.get('/api/get-donation-information', donationController.handleGetDonationInfo);
+
+    router.get('/api/get-all-review', reviewController.handleGetAllReview);
 
     return app.use("/", router);
 }

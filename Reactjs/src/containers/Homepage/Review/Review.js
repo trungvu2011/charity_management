@@ -6,8 +6,54 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import reviewImg from '../../../assets/review/vuducdam.jpg';
+import axios from 'axios';
 
 class Review extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            reviewList: []
+        }
+    }
+
+    componentDidMount() {
+        this.getReviewList();
+    }
+
+
+    getReviewList = () => {
+        axios.get('http://localhost:8080/api/get-all-review')
+            .then(response => {
+                this.setState({
+                    reviewList: response.data
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    renderReviewCard = () => {
+        return this.state.reviewList.map((review, index) => {
+            return (
+                <div className='review-card' key={index}>
+                    <div className='card-top'>
+                        <img alt="" src={review.img} />
+                    </div>
+                    <div className='card-bottom'>
+                        <h4>{review.reviewer}</h4>
+                        <h5>{review.achievement}</h5>
+                        <p>
+                            {review.content}
+                        </p>
+                    </div>
+                    <div className='custom-shape'></div>
+                </div>
+            )
+        })
+    }
+
     render() {
         let settings = {
             dots: false,
@@ -43,84 +89,7 @@ class Review extends Component {
                 <div className='review-container'>
                     <div className='review-body'>
                         <Slider {...settings}>
-                            <div className='review-card'>
-                                <div className='card-top'>
-                                    <img alt="" src={reviewImg} />
-                                </div>
-                                <div className='card-bottom'>
-                                    <h4>Nguyên Phó Thủ tướng Vũ Đức Dam</h4>
-                                    <h5>Nguyên Trưởng ban chỉ đạo đề án iTrithuc</h5>
-                                    <p>
-                                        Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
-                                    </p>
-                                </div>
-                                <div className='custom-shape'></div>
-                            </div>
-                            <div className='review-card'>
-                                <div className='card-top'>
-                                    <img alt="" src={reviewImg} />
-                                </div>
-                                <div className='card-bottom'>
-                                    <h4>Nguyên Phó Thủ tướng Vũ Đức Dam</h4>
-                                    <h5>Nguyên Trưởng ban chỉ đạo đề án iTrithuc</h5>
-                                    <p>
-                                        Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
-                                    </p>
-                                </div>
-                                <div className='custom-shape'></div>
-                            </div>
-                            <div className='review-card'>
-                                <div className='card-top'>
-                                    <img alt="" src={reviewImg} />
-                                </div>
-                                <div className='card-bottom'>
-                                    <h4>Nguyên Phó Thủ tướng Vũ Đức Dam</h4>
-                                    <h5>Nguyên Trưởng ban chỉ đạo đề án iTrithuc</h5>
-                                    <p>
-                                        Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
-                                    </p>
-                                </div>
-                                <div className='custom-shape'></div>
-                            </div>
-                            <div className='review-card'>
-                                <div className='card-top'>
-                                    <img alt="" src={reviewImg} />
-                                </div>
-                                <div className='card-bottom'>
-                                    <h4>Nguyên Phó Thủ tướng Vũ Đức Dam</h4>
-                                    <h5>Nguyên Trưởng ban chỉ đạo đề án iTrithuc</h5>
-                                    <p>
-                                        Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
-                                    </p>
-                                </div>
-                                <div className='custom-shape'></div>
-                            </div>
-                            <div className='review-card'>
-                                <div className='card-top'>
-                                    <img alt="" src={reviewImg} />
-                                </div>
-                                <div className='card-bottom'>
-                                    <h4>Nguyên Phó Thủ tướng Vũ Đức Dam</h4>
-                                    <h5>Nguyên Trưởng ban chỉ đạo đề án iTrithuc</h5>
-                                    <p>
-                                        Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
-                                    </p>
-                                </div>
-                                <div className='custom-shape'></div>
-                            </div>
-                            <div className='review-card'>
-                                <div className='card-top'>
-                                    <img alt="" src={reviewImg} />
-                                </div>
-                                <div className='card-bottom'>
-                                    <h4>Nguyên Phó Thủ tướng Vũ Đức Dam</h4>
-                                    <h5>Nguyên Trưởng ban chỉ đạo đề án iTrithuc</h5>
-                                    <p>
-                                        Đây là dự án đầu tiên tại Việt Nam sử dụng công nghệ trong việc thiện nguyện. Sự trợ giúp này được công khai, minh bạch hoàn toàn qua đó lan tỏa những điều tốt đẹp trong xã hội.
-                                    </p>
-                                </div>
-                                <div className='custom-shape'></div>
-                            </div>
+                            {this.renderReviewCard()}
                         </Slider>
                     </div>
                 </div>

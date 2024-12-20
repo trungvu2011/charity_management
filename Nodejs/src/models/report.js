@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // Relationship with Campaigns table
-      Report.belongsTo(models.Campaign, {
-        foreignKey: 'campaign_id',
-      });
     }
   };
   Report.init({
@@ -23,17 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    campaign_id: {
-      type: DataTypes.INTEGER,
-      references: { model: 'Campaigns', key: 'campaign_id' }
-    },
-    title: DataTypes.STRING,
+    reviewer: DataTypes.STRING,
+    img: DataTypes.STRING,
+    achievement: DataTypes.STRING,
     content: DataTypes.TEXT,
-    report_date: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    },
-    created_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Report',
