@@ -10,10 +10,13 @@ let getAllCampaigns = async () => {
             for (let i = 0; i < campaigns.length; i++) {
                 let user = await db.User.findOne({
                     where: { user_id: campaigns[i].user_id },
-                    attributes: ['firstName', 'lastName', 'userType']
+                    attributes: ['firstName', 'lastName', 'userType', 'email', 'phonenumber']
                 });
                 campaigns[i].setDataValue('type', user.userType);
                 campaigns[i].setDataValue('creator', user.lastName + ' ' + user.firstName);
+                campaigns[i].setDataValue('creatorEmail', user.email);
+                campaigns[i].setDataValue('creatorPhone', user.phonenumber);
+
                 // raisedAmount
                 // progress
                 // remainingDays
@@ -58,6 +61,53 @@ let checkCampaignID = (ID) => {
     });
 };
 
+
+let getCampaignById = async (campaignId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let campaign = await db.Campaign.findOne({
+                where: { campaign_id: campaignId },
+                attributes: { exclude: ['createdAt', 'updatedAt'] }
+            });
+            if (!campaign) {
+                resolve({});
+            }
+            let user = await db.User.findOne({
+                where: { user_id: campaign.user_id },
+                attributes: ['firstName', 'lastName', 'userType', 'email', 'phonenumber']
+            });
+            campaign.setDataValue('type', user.userType);
+            campaign.setDataValue('creator', user.lastName + ' ' + user.firstName);
+            campaign.setDataValue('creatorEmail', user.email);
+            campaign.setDataValue('creatorPhone', user.phonenumber);
+
+            // raisedAmount
+            // progress
+            // remainingDays
+            let donations = await db.Donation.findAll({
+                where: { campaign_id: campaign.campaign_id },
+                attributes: ['amount']
+            });
+
+            let raisedAmount = 0;
+            for (let j = 0; j < donations.length; j++) {
+                raisedAmount += donations[j].amount;
+            }
+
+            campaign.setDataValue('raisedAmount', raisedAmount);
+            campaign.setDataValue('progress', Math.round(raisedAmount / campaign.goal_amount * 100));
+
+            let remainingDays = campaign.end_date ? Math.ceil((new Date(campaign.end_date) - new Date()) / (1000 * 60 * 60 * 24)) : null;
+            campaign.setDataValue('remainingDays', remainingDays);
+
+            resolve(campaign);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 module.exports = {
     getAllCampaigns: getAllCampaigns,
+    getCampaignById: getCampaignById
 }

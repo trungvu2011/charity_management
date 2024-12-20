@@ -43,7 +43,9 @@ module.exports = (sequelize, DataTypes) => {
     goal_amount: DataTypes.BIGINT,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
-    status: DataTypes.BOOLEAN // 0 = inactive, 1 = active
+    status: DataTypes.BOOLEAN, // 0 = inactive, 1 = active
+    BANK_ID: DataTypes.STRING,
+    BANK_NO: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Campaign',

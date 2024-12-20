@@ -5,8 +5,13 @@ let handleGetAllCampaigns = async (req, res) => {
     return res.status(200).json(data);
 }
 
+let handleGetCampaignById = async (req, res) => {
+    let campaignId = req.query.id;
+    let data = await userService.getCampaignById(campaignId);
+    return res.status(200).json(data);
+}
 
 module.exports = {
     handleGetAllCampaigns: handleGetAllCampaigns,
-    
+    handleGetCampaignById: handleGetCampaignById
 }

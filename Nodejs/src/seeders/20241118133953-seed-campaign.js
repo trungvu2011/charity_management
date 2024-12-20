@@ -13,6 +13,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -26,6 +28,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -39,6 +43,10 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -52,6 +60,10 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -65,6 +77,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -78,6 +92,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -91,6 +107,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -104,6 +122,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -117,6 +137,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -130,6 +152,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -143,6 +167,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -156,6 +182,8 @@ module.exports = {
         start_date: new Date(),
         end_date: new Date(new Date().setDate(new Date().getDate() + 30)),
         status: 1,
+        BANK_ID: "970422",
+        BANK_NO: "4888820112004",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -169,5 +197,5 @@ module.exports = {
       cascade: true
     });
   }
-  
+
 };

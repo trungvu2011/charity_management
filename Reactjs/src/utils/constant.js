@@ -8,6 +8,7 @@ export const path = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     USER_EDIT: '/user-edit',
+    DONATE: '/donate',
 };
 
 export const languages = {

@@ -27,10 +27,11 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-user', userController.handleDeleteUser);
 
     router.get('/api/get-all-campaigns', campaignController.handleGetAllCampaigns);
-    
-    router.post('/api/create-new-donation',donationController.handleCreateNewDonation);
-    router.get('/api/get-donation-information',donationController.handleGetDonationInfo);
-    
+    router.get('/api/get-campaign-by-id', campaignController.handleGetCampaignById);
+
+    router.post('/api/create-new-donation', donationController.handleCreateNewDonation);
+    router.get('/api/get-donation-information', donationController.handleGetDonationInfo);
+
     return app.use("/", router);
 }
 

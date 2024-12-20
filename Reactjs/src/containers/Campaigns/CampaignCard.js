@@ -10,7 +10,6 @@ const CampaignCard = ({ campaign }) => {
         <Link
             to={{
                 pathname: `/campaign/id=${campaign.campaign_id}`, // Điều hướng đến chi tiết chiến dịch
-                state: { campaign } // Truyền dữ liệu campaign qua state
             }}
             className='relative flex flex-col w-[30%] h-[480px] m-3 bg-white rounded-xl shadow-md hover:cursor-pointer no-underline'
         >

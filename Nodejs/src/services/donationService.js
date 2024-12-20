@@ -4,17 +4,16 @@ import db from '../models/index';
 let createNewDonation = async (data) => {
     try {
         // Kiểm tra dữ liệu đầu vào
-        if (!data.donation_id || !data.campaign_id || !data.user_id || !data.amount || !data.donation_date) {
+        if (!data.campaign_id || !data.user_id || !data.amount) {
             throw new Error('Thiếu thông tin cần thiết!');
         }
 
         // Tạo donation
         await db.Donation.create({
-            donation_id: data.donation_id,
             campaign_id: data.campaign_id,
             user_id: data.user_id,
             amount: data.amount,
-            donation_date: data.donation_date,
+            donation_date: new Date(),
             message: data.message || '' // Nếu message không có, sử dụng chuỗi rỗng
         });
 

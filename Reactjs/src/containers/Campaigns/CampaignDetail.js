@@ -5,43 +5,61 @@ import HomeHeader from "../Homepage/Header/HomeHeader";
 import Footer from "../Footer/Footer";
 import { HiFlag, HiMail, HiOutlineClock, HiPhone } from "react-icons/hi";
 import gmail from '../../assets/images/gmail.png';
-import facebook from '../../assets/images/facebook.png';
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const CampaignDetail = () => {
-    const { state } = useLocation();  // Lấy dữ liệu truyền qua state từ link
-    const campaign = state?.campaign; // Lấy campaign từ state
+    const location = useLocation(); // Lấy thông tin location
+    const [campaign, setCampaign] = useState(null); // State cho thông tin chiến dịch
     const [tab, setTab] = useState('Câu chuyện');
     const [donationInfo, setDonationInfo] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); // State cho tìm kiếm
-
-    console.log(campaign); // Kiểm tra dữ liệu campaign
 
     const formatCurrency = (amount) => {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
     };
 
+    // Fetch campaign data by ID
+    useEffect(() => {
+        const fetchCampaignById = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/get-campaign-by-id', {
+                    params: {
+                        id: location.pathname.split('=')[1] // Truyền tham số qua params
+                    }
+                });
+                setCampaign(response.data); // Cập nhật thông tin chiến dịch
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchCampaignById();
+    }, [location.pathname]); // Runs when location changes
+
+    // Fetch donation info after campaign data is fetched
     useEffect(() => {
         const fetchDonationInfo = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/get-donation-information/', {
-                    params: {
-                        campaign_id: campaign.campaign_id // Truyền tham số qua params
-                    }
-                });
-                console.log(response.data); // Kiểm tra dữ liệu trả về
-                setDonationInfo(response.data.donationList); // Cập nhật thông tin ủng hộ
+                if (campaign?.campaign_id) {
+                    const response = await axios.get('http://localhost:8080/api/get-donation-information/', {
+                        params: {
+                            campaign_id: campaign.campaign_id // Truyền tham số qua params
+                        }
+                    });
+                    setDonationInfo(response.data.donationList); // Cập nhật thông tin ủng hộ
+                }
             } catch (error) {
-                console.error(error); // Xử lý lỗi nếu có
+                console.error(error);
             }
         };
 
-        fetchDonationInfo(); // Gọi hàm fetch dữ liệu
-    }, [campaign.campaign_id]); // Lắng nghe thay đổi campaign_id
+        if (campaign) {
+            fetchDonationInfo(); // Call donation fetch after campaign data is available
+        }
+    }, [campaign]); // Fetch lại khi campaign thay đổi
 
     const filteredDonations = donationInfo.filter((donation) => {
         return donation.name && donation.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
-
 
     const renderDonationInfo = () => {
         return (
@@ -72,7 +90,6 @@ const CampaignDetail = () => {
                                             month: 'numeric',
                                             day: 'numeric',
                                         })
-
                                     }
                                 </td>
                             </tr>
@@ -86,6 +103,11 @@ const CampaignDetail = () => {
             </table>
         );
     };
+
+    // If campaign or creator data is not available yet, show a loading message
+    if (!campaign) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="flex flex-col">
@@ -132,7 +154,7 @@ const CampaignDetail = () => {
                         <div className="flex flex-col border-b-gray-300 border-b-2 p-6">
                             <div className="flex flex-row items-center">
                                 <div className="w-18 h-18 rounded-full border-[#f54a00] border-4">
-                                    <img alt="creator" src={campaign?.creator.img} className="w-16 h-16 object-cover rounded-full " />
+                                    <img alt="creator" src={campaign?.creator?.img} className="w-16 h-16 object-cover rounded-full " />
                                 </div>
                                 <div className="flex flex-col ml-4">
                                     <span className="text-base font-semibold text-[#6f6f6f]">Tiền ủng hộ được chuyển đến</span>
@@ -167,37 +189,40 @@ const CampaignDetail = () => {
                                 </div>
                                 <span className="text-base font-semibold text-[#6f6f6f]">{campaign.progress} %</span>
                             </div>
-                            <button className="w-full bg-gradient-to-r from-[#f54a00] to-[#ff9252] text-xl text-white font-bold rounded-full p-4 mt-4 hover:bg-[#f54a0033]">Ủng hộ</button>
+                            <Link to={{
+                                pathname: `/donate/id=${campaign.campaign_id}`, // Điều hướng đến trang ủng hộ
+                                state: { campaign } // Truyền dữ liệu campaign qua state
+                            }}>
+                                <button className="w-full bg-gradient-to-r from-[#f54a00] to-[#ff9252] text-xl text-white font-bold rounded-full p-4 mt-4 hover:bg-[#f54a0033]">
+                                    Ủng hộ
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col rounded-2xl bg-white shadow-lg">
                         <div className="flex flex-col border-b-gray-300 border-b-2 p-6">
-                            <span className="text-xl font-bold text-[#393939]">Thông tin nguời vận động</span>
+                            <span className="text-xl font-bold text-[#393939]">Thông tin người vận động</span>
                         </div>
                         <div className="flex flex-col p-6">
                             <div className="flex flex-row">
                                 <div className="w-18 h-18 rounded-full border-[#f54a00] border-4">
-                                    <img alt="creator" src={campaign?.creator.img} className="w-16 h-16 object-cover rounded-full " />
+                                    <img alt="creator" src={campaign?.creator?.img} className="w-16 h-16 object-cover rounded-full " />
                                 </div>
                                 <div className="flex flex-col ml-4">
                                     <span className="text-lg font-bold text-[#f54a00] mb-1">{campaign?.creator}</span>
                                     <div className="w-[50%] p-2 rounded-full bg-[#f54a00b2] flex justify-center items-center">
-                                        <span className="text-white text-sm font-medium">{campaign.type ? 'Tổ chức' : 'Cá nhân'}</span>
+                                        <span className="text-white text-sm font-medium">{campaign?.type ? 'Tổ chức' : 'Cá nhân'}</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex flex-col mt-4">
                                 <div className="flex items-center">
-                                    <img alt="gmail" src={gmail} className="w-6 h-6 object-contain mr-4"/>
-                                    <span className="text-base font-semibold text-[#6f6f6f]">...@gmail.com</span>
-                                </div>
-                                <div className="flex items-center mt-3">
-                                <img alt="facebook" src={facebook} className="w-6 h-6 object-contain mr-4"/>
-                                    <a href="" className="no-underline text-base font-semibold text-[#6f6f6f]">Link Facebook</a>
+                                    <img alt="gmail" src={gmail} className="w-6 h-6 object-contain mr-4" />
+                                    <span className="text-base font-semibold text-[#6f6f6f]">{campaign?.creatorEmail}</span>
                                 </div>
                                 <div className="flex items-center mt-3">
                                     <HiPhone className="w-8 h-8 text-green-600 mr-4" />
-                                    <span className="text-base font-semibold text-[#6f6f6f]">SDT</span>
+                                    <span className="text-base font-semibold text-[#6f6f6f]">{campaign?.creatorPhone}</span>
                                 </div>
                             </div>
                         </div>

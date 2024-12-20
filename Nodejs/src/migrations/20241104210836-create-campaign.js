@@ -35,6 +35,12 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN // 0 = inactive, 1 = active
       },
+      BANK_ID: {
+        type: Sequelize.STRING,
+      },
+      BANK_NO: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

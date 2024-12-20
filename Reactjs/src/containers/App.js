@@ -8,13 +8,13 @@ import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authenticati
 import { path } from '../utils'
 
 import Home from '../routes/Home';
-// import Login from '../routes/Login';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Header from './Homepage/Header/Header';
 import System from '../routes/System';
 import HomePage from './Homepage/HomePage';
 import UserEditPage from './User/UserEditPage.js';
+import Donate from './Campaigns/Donate.js';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 import CustomScrollbars from '../components/CustomScrollbars';
@@ -59,6 +59,7 @@ class App extends Component {
                                     <Route path={path.CAMPAIGNDETAIL} component={CampaignDetail} />
                                     <Route path={path.HOMEPAGE} component={(HomePage)} />
                                     <Route path={path.USER_EDIT} component={(UserEditPage)} />
+                                    <Route path={path.DONATE} component={(Donate)} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>
