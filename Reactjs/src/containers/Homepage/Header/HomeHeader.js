@@ -94,7 +94,7 @@ class HomeHeader extends Component {
                         <ul className='header-nav'>
                             <li><a href='/'>Giới thiệu</a></li>
                             <li><a href='/campaigns'>Chiến dịch</a></li>
-                            <li><div className='nav-campaign' href=''></div></li>
+                            <li><a href='/create-campaign'>Tạo chiến dịch mới</a></li>
                         </ul>
                     </div>
                     <div className='right-content'>

@@ -3,6 +3,7 @@ export const path = {
     HOMEPAGE: '/home',
     CAMPAIGNS: '/campaigns',
     CAMPAIGNDETAIL: '/campaign/:id',
+    CREATECAMPAIGN: '/create-campaign',
     LOGIN: '/login',
     REGISTER: '/register',
     LOG_OUT: '/logout',
