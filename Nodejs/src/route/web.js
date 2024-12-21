@@ -1,4 +1,7 @@
 import express from "express";
+import multer from "multer";
+import path from "path";
+
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import campaignController from "../controllers/campaignController";
@@ -6,6 +9,17 @@ import donationController from "../controllers/donationController";
 import reviewController from "../controllers/reviewController.js";
 
 let router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../uploads'));
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    }
+});
+
+const upload = multer({ storage });
 
 let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
@@ -29,6 +43,7 @@ let initWebRoutes = (app) => {
 
     router.get('/api/get-all-campaigns', campaignController.handleGetAllCampaigns);
     router.get('/api/get-campaign-by-id', campaignController.handleGetCampaignById);
+    router.post('/api/create-new-campaign', upload.single('img'), campaignController.handleCreateNewCampaign);
 
     router.post('/api/create-new-donation', donationController.handleCreateNewDonation);
     router.get('/api/get-donation-information', donationController.handleGetDonationInfo);
