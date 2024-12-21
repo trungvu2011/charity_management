@@ -1,5 +1,6 @@
 import e from 'express';
 import db from '../models/index';
+import { Op } from 'sequelize';
 
 let createNewCampaign = (data) => {
     return new Promise(async (resolve, reject) => {
@@ -69,25 +70,6 @@ let getAllCampaigns = async () => {
     })
 }
 
-let checkCampaignID = (ID) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-
-            let user = await db.User.findOne({
-                where: { ID: ID }
-            });
-            if (user) {
-                resolve(true);
-            } else {
-                resolve(false);
-            }
-        } catch (error) {
-            reject(error);
-        }
-    });
-};
-
-
 let getCampaignById = async (campaignId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -133,8 +115,39 @@ let getCampaignById = async (campaignId) => {
     });
 }
 
+let updateNotificationOfCampaign = async () => {
+    try {
+        let campaigns = await db.Campaign.findAll({
+            where: {
+                status: 1,  // Trạng thái chiến dịch là 1
+                end_date: { [Op.lt]: new Date() }  // end_date nhỏ hơn thời gian hiện tại
+            },
+        });
+        campaigns.forEach(async (campaign) => {
+            await db.Campaign.update({
+                status: 0  // Cập nhật trạng thái chiến dịch thành 0 (đã kết thúc)
+            }, {
+                where: { campaign_id: campaign.campaign_id }
+            });
+            // Tạo thông báo cho người tạo chiến dịch
+            await db.Notification.create({
+                user_id: campaign.user_id,
+                campaign_id: campaign.campaign_id,
+                noti: `Chiến dịch ${campaign.title} đã kết thúc`
+            });
+        });
+
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Thiết lập để kiểm tra mỗi 5 phút (300,000 ms)
+setInterval(updateNotificationOfCampaign, 300000);  // 5 phút
+
 module.exports = {
     getAllCampaigns: getAllCampaigns,
     getCampaignById: getCampaignById,
-    createNewCampaign: createNewCampaign
+    createNewCampaign: createNewCampaign,
+    updateNotificationOfCampaign: updateNotificationOfCampaign
 }

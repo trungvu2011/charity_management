@@ -177,7 +177,9 @@ const CampaignDetail = () => {
                                     <HiOutlineClock className="w-8 h-8 text-blue-600 mr-4" />
                                     <div className="flex flex-col">
                                         <span className="text-base font-semibold text-[#6f6f6f]">Thời gian còn lại</span>
-                                        <span className="text-xl font-semibold">{campaign.remainingDays} ngày</span>
+                                        <span className="text-xl font-semibold">
+                                            {campaign.remainingDays === 0 ? 'Đã kết thúc' : `${campaign.remainingDays} ngày`}
+                                        </span>
                                     </div>
                                 </div>
                             </div>

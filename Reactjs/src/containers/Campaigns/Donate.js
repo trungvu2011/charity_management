@@ -34,7 +34,6 @@ const Donate = () => {
         // Generate payment URL
         let bankId = campaign.BANK_ID;
         let accountNo = campaign.BANK_NO;
-        console.log(bankId, accountNo, amount, message, name);
         let paymentUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-qr-only.png?amount=${amount}`;
         paymentUrl = `https://img.vietqr.io/image/970422-4888820112004-qr_only.png?amount=10000`;
         setPaymentLink(paymentUrl);

@@ -70,7 +70,7 @@ class Login extends Component {
         try {
             adminService.login(loginBody)
         } catch (e) {
-            console.log('error login : ', e)
+            console.log(e)
         }
 
     }

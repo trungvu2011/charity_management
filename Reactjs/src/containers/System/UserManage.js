@@ -97,7 +97,6 @@ class UserManage extends Component {
     }
 
     doEditUser = async (user) => {
-        console.log('click save user: ', user);
         try {
             let response = await editUserService(user);
             if (response && response.errCode === 0) {

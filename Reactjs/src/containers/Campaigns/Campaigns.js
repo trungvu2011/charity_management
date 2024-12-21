@@ -18,7 +18,6 @@ const Campaigns = () => {
         const fetchCampaigns = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
-                console.log(response.data);
                 setCampaigns(response.data);
                 setFilteredCampaigns(response.data);
             } catch (error) {
@@ -34,13 +33,13 @@ const Campaigns = () => {
             let filtered = campaigns;
 
             if (contributorType !== 'Tất cả') {
-                filtered = filtered.filter(campaign => 
+                filtered = filtered.filter(campaign =>
                     contributorType === 'Tổ chức' ? campaign.type === true : campaign.type === false
                 );
             }
 
             if (status !== 'Tất cả') {
-                filtered = filtered.filter(campaign => 
+                filtered = filtered.filter(campaign =>
                     status === 'Đang thực hiện' ? campaign.status === true : campaign.status === false
                 );
             }

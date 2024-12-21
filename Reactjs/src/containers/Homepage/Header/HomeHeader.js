@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import SearchBar from './SearchBar';
+import axios from 'axios';
 
 class HomeHeader extends Component {
     constructor(props) {
@@ -9,6 +10,8 @@ class HomeHeader extends Component {
         this.state = {
             userInfo: null,
             isMenuOpen: false,
+            isNotiOpen: false,
+            notifications: [],
         };
     }
 
@@ -18,6 +21,25 @@ class HomeHeader extends Component {
         if (userInfo) {
             this.setState({ userInfo: JSON.parse(userInfo) });
         }
+
+        const parsedUserInfo = JSON.parse(userInfo);
+        const userId = parsedUserInfo ? parsedUserInfo.user_id : null;
+        console.log(userId);
+
+        // Lấy thông tin người dùng từ server
+        axios.get('http://localhost:8080/api/get-notifications', {
+            params: {
+                user_id: userId
+            }
+        })
+            .then(response => {
+                this.setState({ notifications: response.data.data });
+                console.log('notifications', this.state.notifications);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
     }
 
     handleToggleMenu = () => {
@@ -37,8 +59,29 @@ class HomeHeader extends Component {
         window.location.href = '/home';
     };
 
+    renderNotifications = () => {
+        const { notifications } = this.state;
+        const sortedNotifications = [...notifications].reverse();
+        return (
+            <div className='noti-dropdown'>
+                <div className='noti-header'>
+                    <h4>Thông báo</h4>
+                </div>
+                <ul>
+                    {sortedNotifications.map((noti, index) => (
+                        <li key={index}>
+                            <a href={`/campaign/id=${noti.campaign_id}`}>Chiến dịch
+                                <span className='text-red-700'>{' ' + noti.campaign + ' '}</span>
+                                đã kết thúc</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
+
     render() {
-        const { userInfo, isMenuOpen } = this.state;
+        const { userInfo, isMenuOpen, isNotiOpen } = this.state;
         const isLoggedIn = !!userInfo; // Kiểm tra đăng nhập
 
         return (
@@ -61,13 +104,17 @@ class HomeHeader extends Component {
 
                         {isLoggedIn && userInfo ? (
                             <>
-                                <div>
-                                    <i className='fas fa-bell bell-noti'></i>
+                                <div className='header-noti'>
+                                    <i className='fas fa-bell bell-noti'
+                                        onClick={() => this.setState((prevState) => ({ isNotiOpen: !prevState.isNotiOpen }))}
+                                    ></i>
+                                    {isNotiOpen && (
+                                        this.renderNotifications()
+                                    )}
                                 </div>
                                 <div className='user-menu'>
                                     <i className='fas fa-user user-avatar'
                                         onClick={this.handleToggleMenu}>
-
                                     </i>
                                     {isMenuOpen && (
                                         <div className='menu-dropdown'>

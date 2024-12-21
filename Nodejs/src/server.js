@@ -5,6 +5,7 @@ import viewEngine from "./config/viewEngine";
 import initWebRoutes from './route/web';
 import cors from 'cors';
 require('dotenv').config();
+import { updateNotificationOfCampaign } from './services/campaignService';
 
 let db = require('./models');
 
@@ -30,6 +31,8 @@ db.sequelize.authenticate()
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
+updateNotificationOfCampaign();
 
 
 let port = process.env.PORT || 6969;

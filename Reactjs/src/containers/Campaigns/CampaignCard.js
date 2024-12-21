@@ -17,7 +17,9 @@ const CampaignCard = ({ campaign }) => {
         >
             <img src={imgSrc} alt="" className='w-full h-[300px] object-cover rounded-t-xl' />
             <div className='absolute bg-[#f4f4f4] top-4 left-2 rounded-full pt-2 pb-2 pl-3 pr-3'>
-                <span className='text-black text-sm font-medium'>Còn {campaign.remainingDays} ngày</span>
+                <span className='text-black text-sm font-medium'>
+                    {campaign.remainingDays === 0 ? 'Đã kết thúc' : `Còn ${campaign.remainingDays} ngày`}
+                </span>
             </div>
             <span className='p-3 text-black text-xl font-extrabold truncate'>{campaign.title}</span>
             <div className='flex flex-row pl-3 pr-3 pb-3'>

@@ -50,6 +50,8 @@ let initWebRoutes = (app) => {
 
     router.get('/api/get-all-review', reviewController.handleGetAllReview);
 
+    router.get('/api/get-notifications', userController.handleGetNotifications);
+
     return app.use("/", router);
 }
 

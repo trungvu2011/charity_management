@@ -116,7 +116,7 @@ let getAllUsers = (user_id) => {
                     attributes: {
                         exclude: ['password']
                     }
-             
+
                 });
             }
             if (user_id && user_id !== 'ALL') {
@@ -230,6 +230,41 @@ let updateUserData = (data) => {
     })
 }
 
+let getNotifications = (user_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!user_id) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameters!'
+                });
+            }
+            let data = await db.Notification.findAll({
+                where: { user_id: user_id },
+                raw: false,
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            });
+
+            for (let i = 0; i < data.length; i++) {
+                let campaign = await db.Campaign.findOne({
+                    where: { campaign_id: data[i].campaign_id },
+                    raw: true
+                });
+                data[i].dataValues.campaign = campaign.title;
+            }
+
+            resolve({
+                errCode: 0,
+                data
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 module.exports = {
     handleUserLogin: handleUserLogin,
     handleUserRegister: handleUserRegister,
@@ -238,4 +273,5 @@ module.exports = {
     createNewUser: createNewUser,
     deleteUser: deleteUser,
     updateUserData: updateUserData,
+    getNotifications: getNotifications
 };
