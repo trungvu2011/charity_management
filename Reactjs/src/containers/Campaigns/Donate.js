@@ -75,9 +75,9 @@ const Donate = () => {
     return (
         <div className="flex flex-col">
             <HomeHeader />
-            <div className="flex flex-row bg-[#f9f3ee]">
+            <div className="h-[100vh] flex flex-row bg-[#f9f3ee]">
                 <div className="w-[45%] pl-32 p-8 flex flex-col">
-                    <div className="flex flex-col border-b-gray-300 border-b-2 p-6 bg-white rounded-2xl">
+                    <div className="flex flex-col border-b-gray-300 border-b-2 p-6 bg-white rounded-tl-2xl rounded-tr-2xl">
                         <div className="flex flex-row items-center">
                             <div className="w-18 h-18 rounded-full border-[#f54a00] border-4">
                                 <img alt="creator" src={campaign?.creator.img} className="w-14 h-14 object-cover rounded-full" />
@@ -88,11 +88,11 @@ const Donate = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col p-6 bg-white rounded-2xl">
+                    <div className="flex flex-col p-6 bg-white rounded-bl-2xl rounded-br-2xl">
                         <span>Bạn đang ủng hộ cho chiến dịch</span>
-                        <img alt="campaign" src={campaign?.img} className="w-full object-cover mt-4 rounded-2xl shadow-lg" />
-                        <span className="text-xl font-bold mt-2">{campaign?.title}</span>
-                        <div className="flex flex-row pl-3 pr-3 pb-3 justify-between">
+                        <img alt="campaign" src={campaign?.img} className="w-full object-cover mt-4 mb-4 rounded-2xl shadow-lg" />
+                        <span className="text-xl font-bold">{campaign?.title}</span>
+                        <div className="flex flex-row mt-2 pb-3 justify-between">
                             <div className="flex flex-row">
                                 <span className="text-base text-[#f54a00] font-extrabold">{formatCurrency(campaign.raisedAmount.toString())} VND</span>
                                 <span className="text-black text-base font-medium ml-2">đã đạt được</span>
@@ -101,12 +101,12 @@ const Donate = () => {
                                 <span className="text-black text-base font-extrabold">{campaign.progress}%</span>
                             </div>
                         </div>
-                        <div className="pl-3 pr-3 pb-3">
+                        <div className="pb-3">
                             <div className="relative w-full h-2 bg-gray-300 rounded-full">
                                 <div className="absolute h-2 bg-[#f54a00] rounded-full" style={{ width: `${campaign.progress}%` }}></div>
                             </div>
                         </div>
-                        <div className="flex flex-row pl-3 pr-3 pb-3 justify-between">
+                        <div className="flex flex-row pb-3 justify-between">
                             <div className="flex flex-row">
                                 <span className="text-base text-gray-500">Của mục tiêu {formatCurrency(campaign.goal_amount.toString())}</span>
                             </div>
