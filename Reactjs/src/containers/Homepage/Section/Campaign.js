@@ -47,45 +47,49 @@ class Campaign extends Component {
             return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
         };
 
-        return campaigns.map((campaign, index) => (
-            <Link
-                key={index}                
-                to={{
-                    pathname: `/campaign/id=${campaign.campaign_id}`, // Điều hướng đến chi tiết chiến dịch
-                    state: { campaign } // Truyền dữ liệu campaign qua state
-                }}
-                className='relative flex flex-col w-full h-[480px] bg-white rounded-xl shadow-md hover:cursor-pointer no-underline truncate'
-            >
-                <img src={campaign.img} alt="" className='w-full h-[300px] object-cover rounded-t-xl mb-3' />
-                <div className='absolute bg-[#f4f4f4] top-4 left-2 rounded-full pt-2 pb-2 pl-3 pr-3'>
-                    <span className='text-black text-sm font-medium'>Còn {campaign.remainingDays} ngày</span>
-                </div>
-                <span className='w-full p-3 text-black text-xl font-extrabold truncate'>{campaign.title}</span>
-                <div className='flex flex-row p-3'>
-                    <span className='text-base text-gray-500'>Tạo bởi</span>
-                    <span className='ml-2 text-base text-[#f54a00] font-extrabold'>{campaign.creator}</span>
-                </div>
-                <div className='flex flex-row pl-3 pr-3 pb-3 justify-between'>
-                    <div className='flex flex-row'>
-                        <span className='text-base text-[#f54a00] font-extrabold'>{formatCurrency(campaign.raisedAmount)} VND</span>
-                        <span className='text-black text-base font-medium ml-2'>đã đạt được</span>
+        return campaigns.map((campaign, index) => {
+            let imgSrc = campaign.img.startsWith('http') ? campaign.img : `http://localhost:8080${campaign.img}`;
+            console.log('Link img', imgSrc);
+            return (
+                <Link
+                    key={index}
+                    to={{
+                        pathname: `/campaign/id=${campaign.campaign_id}`, // Điều hướng đến chi tiết chiến dịch
+                        state: { campaign } // Truyền dữ liệu campaign qua state
+                    }}
+                    className='relative flex flex-col w-full h-[480px] bg-white rounded-xl shadow-md hover:cursor-pointer no-underline truncate'
+                >
+                    <img src={imgSrc} alt="" className='w-full h-[300px] object-cover rounded-t-xl mb-3' />
+                    <div className='absolute bg-[#f4f4f4] top-4 left-2 rounded-full pt-2 pb-2 pl-3 pr-3'>
+                        <span className='text-black text-sm font-medium'>Còn {campaign.remainingDays} ngày</span>
                     </div>
-                    <div className='flex flex-row'>
-                        <span className='text-black text-base font-extrabold'>{campaign.progress}%</span>
+                    <span className='w-full p-3 text-black text-xl font-extrabold truncate'>{campaign.title}</span>
+                    <div className='flex flex-row p-3'>
+                        <span className='text-base text-gray-500'>Tạo bởi</span>
+                        <span className='ml-2 text-base text-[#f54a00] font-extrabold'>{campaign.creator}</span>
                     </div>
-                </div>
-                <div className='pl-3 pr-3 pb-3'>
-                    <div className='relative w-full h-2 bg-gray-300 rounded-full'>
-                        <div className='absolute h-2 bg-[#f54a00] rounded-full' style={{ width: `${campaign.progress}%` }}></div>
+                    <div className='flex flex-row pl-3 pr-3 pb-3 justify-between'>
+                        <div className='flex flex-row'>
+                            <span className='text-base text-[#f54a00] font-extrabold'>{formatCurrency(campaign.raisedAmount)} VND</span>
+                            <span className='text-black text-base font-medium ml-2'>đã đạt được</span>
+                        </div>
+                        <div className='flex flex-row'>
+                            <span className='text-black text-base font-extrabold'>{campaign.progress}%</span>
+                        </div>
                     </div>
-                </div>
-                <div className='flex flex-row pl-3 pr-3 pb-3 justify-between'>
-                    <div className='flex flex-row'>
-                        <span className='text-base text-gray-500'>Của mục tiêu {campaign.goal_amount} VND</span>
+                    <div className='pl-3 pr-3 pb-3'>
+                        <div className='relative w-full h-2 bg-gray-300 rounded-full'>
+                            <div className='absolute h-2 bg-[#f54a00] rounded-full' style={{ width: `${campaign.progress}%` }}></div>
+                        </div>
                     </div>
-                </div>
-            </Link>
-        ));
+                    <div className='flex flex-row pl-3 pr-3 pb-3 justify-between'>
+                        <div className='flex flex-row'>
+                            <span className='text-base text-gray-500'>Của mục tiêu {formatCurrency(campaign.goal_amount)}</span>
+                        </div>
+                    </div>
+                </Link>
+            );
+        });
     };
 
     render() {

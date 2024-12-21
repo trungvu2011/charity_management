@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import HomeHeader from '../Homepage/Header/HomeHeader';
+import Footer from '../Footer/Footer'
 import axios from 'axios';
 
 const Donate = () => {
@@ -72,6 +73,8 @@ const Donate = () => {
         setShowQRCode(false);
     };
 
+    let imgSrc = campaign.img.startsWith('http') ? campaign.img : `http://localhost:8080${campaign.img}`;
+
     return (
         <div className="flex flex-col">
             <HomeHeader />
@@ -90,9 +93,9 @@ const Donate = () => {
                     </div>
                     <div className="flex flex-col p-6 bg-white rounded-bl-2xl rounded-br-2xl">
                         <span>Bạn đang ủng hộ cho chiến dịch</span>
-                        <img alt="campaign" src={campaign?.img} className="w-full object-cover mt-4 mb-4 rounded-2xl shadow-lg" />
-                        <span className="text-xl font-bold">{campaign?.title}</span>
-                        <div className="flex flex-row mt-2 pb-3 justify-between">
+                        <img alt="campaign" src={imgSrc} className="w-full object-cover mt-4 rounded-2xl shadow-lg" />
+                        <span className="text-xl font-bold mt-2">{campaign?.title}</span>
+                        <div className="flex flex-row pl-3 pr-3 pb-3 justify-between">
                             <div className="flex flex-row">
                                 <span className="text-base text-[#f54a00] font-extrabold">{formatCurrency(campaign.raisedAmount.toString())} VND</span>
                                 <span className="text-black text-base font-medium ml-2">đã đạt được</span>
@@ -216,6 +219,7 @@ const Donate = () => {
                     </div>
                 </div>
             )}
+            <Footer />
         </div>
     );
 };

@@ -6,6 +6,8 @@ const CampaignCard = ({ campaign }) => {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
     };
 
+    let imgSrc = campaign.img.startsWith('http') ? campaign.img : `http://localhost:8080${campaign.img}`;
+
     return (
         <Link
             to={{
@@ -13,7 +15,7 @@ const CampaignCard = ({ campaign }) => {
             }}
             className='relative flex flex-col w-[30%] h-[480px] m-3 bg-white rounded-xl shadow-md hover:cursor-pointer no-underline'
         >
-            <img src={campaign.img} alt="" className='w-full h-[300px] object-cover rounded-t-xl' />
+            <img src={imgSrc} alt="" className='w-full h-[300px] object-cover rounded-t-xl' />
             <div className='absolute bg-[#f4f4f4] top-4 left-2 rounded-full pt-2 pb-2 pl-3 pr-3'>
                 <span className='text-black text-sm font-medium'>Còn {campaign.remainingDays} ngày</span>
             </div>

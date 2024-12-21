@@ -109,13 +109,15 @@ const CampaignDetail = () => {
         return <div>Loading...</div>;
     }
 
+    let imgSrc = campaign.img.startsWith('http') ? campaign.img : `http://localhost:8080${campaign.img}`;
+
     return (
         <div className="flex flex-col">
             <HomeHeader />
             <div className="flex flex-row">
                 <div className="w-[60%] pl-32 p-8 flex flex-col">
                     <span className="text-4xl font-medium">{campaign?.title}</span>
-                    <img alt="campaign" src={campaign?.img} className="w-full object-cover mt-4 rounded-2xl shadow-lg" />
+                    <img alt="campaign" src={imgSrc} className="w-full object-cover mt-4 rounded-2xl shadow-lg" />
                     <div className="flex flex-row mt-4">
                         {['Câu chuyện', 'Danh sách ủng hộ'].map((item, index) => (
                             <button

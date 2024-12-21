@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import bodyParser from "body-parser";
 import viewEngine from "./config/viewEngine";
 import initWebRoutes from './route/web';
@@ -8,11 +9,16 @@ require('dotenv').config();
 let db = require('./models');
 
 let app = express();
-app.use(cors({ credentials: true, origin: true }));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET, POST, PUT, DELETE',
+}));
 //config app
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 viewEngine(app);
 initWebRoutes(app);

@@ -1,6 +1,32 @@
 import e from 'express';
 import db from '../models/index';
 
+let createNewCampaign = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let campaign = await db.Campaign.create({
+                user_id: data.user_id,
+                title: data.title,
+                img: data.img, // Đường dẫn ảnh
+                description: data.description,
+                goal_amount: data.goal_amount,
+                start_date: data.start_date,
+                end_date: data.end_date,
+                status: data.status,
+                BANK_ID: data.BANK_ID,
+                BANK_NO: data.BANK_NO,
+            });
+            resolve({
+                message: "Create campaign successfully",
+                newCampaign: campaign
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+
 let getAllCampaigns = async () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -109,5 +135,6 @@ let getCampaignById = async (campaignId) => {
 
 module.exports = {
     getAllCampaigns: getAllCampaigns,
-    getCampaignById: getCampaignById
+    getCampaignById: getCampaignById,
+    createNewCampaign: createNewCampaign
 }
