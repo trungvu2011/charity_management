@@ -1,13 +1,13 @@
 import campaignService from '../services/campaignService';
 
 let handleGetAllCampaigns = async (req, res) => {
-    let data = await userService.getAllCampaigns();
+    let data = await campaignService.getAllCampaigns();
     return res.status(200).json(data);
 }
 
 let handleGetCampaignById = async (req, res) => {
     let campaignId = req.query.id;
-    let data = await userService.getCampaignById(campaignId);
+    let data = await campaignService.getCampaignById(campaignId);
     return res.status(200).json(data);
 }
 
@@ -22,7 +22,7 @@ let handleCreateNewCampaign = async (req, res) => {
     }
 
     // Lưu đường dẫn ảnh (file path)
-    data.img = `/uploads/${Date.now()}-${img.originalname}`;
+    data.img = `/uploads/${img.filename}`;
 
     let result = await campaignService.createNewCampaign(data);
     return res.status(200).json(result);

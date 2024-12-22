@@ -6,17 +6,17 @@ import axios from "axios";
 
 const CreateCampaign = () => {
     const fileInputRef = useRef(null);
-    const [ imagePreview, setImagePreview] = useState(null);
-    const [ name, setName ] = useState('');
-    const [ image, setImage ] = useState(null);
-    const [ amount, setAmount ] = useState('');
-    const [ description, setDescription ] = useState('');
-    const [ startDate, setStartDate ] = useState('');
-    const [ endDate, setEndDate ] = useState('');
-    const [ bankId, setBankId ] = useState('');
-    const [ bankNo, setBankNo ] = useState('');
-    
-    const [ bankData, setBankData ] = useState([]);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [name, setName] = useState('');
+    const [image, setImage] = useState(null);
+    const [amount, setAmount] = useState('');
+    const [description, setDescription] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [bankId, setBankId] = useState('');
+    const [bankNo, setBankNo] = useState('');
+
+    const [bankData, setBankData] = useState([]);
 
     useEffect(async () => {
         try {
@@ -55,39 +55,55 @@ const CreateCampaign = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-            // Kiểm tra xem đã chọn ảnh hay chưa
+        // Kiểm tra xem đã chọn ảnh hay chưa
         if (!imagePreview) {
             alert("Vui lòng chọn một ảnh!");
             return;
         }
 
-        // Tạo FormData
-        const formData = new FormData();
-        formData.append("name", name); // Tên chiến dịch
-        formData.append("description", description); // Mô tả
-        formData.append("amount", amount.replace(/\./g, '')); // Mục tiêu (xóa dấu chấm)
-        formData.append("startDate", startDate); // Ngày bắt đầu
-        formData.append("endDate", endDate); // Ngày kết thúc
-        formData.append("image", fileInputRef.current.files[0]); // Tệp ảnh
-        
-        try {
-            const response = await axios.post("http://localhost:8080/api/create-new-campaign", formData);
-        } catch (error) {
-            console.error(error);
-        }
-    }
+        let user = localStorage.getItem("userInfo");
+        let user_id = JSON.parse(user).user_id;
 
+        // Tạo FormData
+        let formData = new FormData();
+        formData.append('user_id', user_id);
+        formData.append('title', name);
+        formData.append('description', description);
+        formData.append('img', fileInputRef.current.files[0]);
+        formData.append('goal_amount', amount.replace(/\./g, ''));
+        formData.append('start_date', startDate);
+        formData.append('end_date', endDate);
+        formData.append('status', 1);
+        formData.append('BANK_ID', bankId);
+        formData.append('BANK_NO', bankNo);
+
+        // console.log('Data: ', ...formData);
+
+        await axios.post('http://localhost:8080/api/create-new-campaign', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then((response) => {
+                // console.log('data ', response);
+                alert("Tạo chiến dịch thành công!");
+                window.location.href = '/campaign/id=' + response.data.newCampaign.campaign_id;
+            }).catch((error) => {
+                // console.error(error);
+                alert("Đã xảy ra lỗi khi tạo chiến dịch!");
+            });
+    }
 
 
     return (
         <div>
-            <HomeHeader/>
+            <HomeHeader />
             <div className="bg-[#f9f3ee] flex flex-col justify-center items-center pt-10 pb-10">
                 <form name="campaign" className="w-full flex flex-col">
                     <div className="flex flex-col w-full pl-32 pr-32">
                         <div className="flex flex-col mb-10">
                             <label className="text-lg font-semibold mb-3">Tên chiến dịch</label>
-                            <input 
+                            <input
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -104,12 +120,12 @@ const CreateCampaign = () => {
                                 />
                             ) : (
                                 <div className="h-full bg-white p-10 rounded-2xl flex flex-col justify-center items-center">
-                                    <HiDocumentAdd className="text-6xl text-gray-500"/>
+                                    <HiDocumentAdd className="text-6xl text-gray-500" />
                                     <p className="mt-4 text-lg font-medium text-gray-500">Thêm ảnh/video</p>
                                     <p className="text-sm text-gray-500">Nhấn để chọn tệp</p>
                                 </div>
                             )}
-                            <input 
+                            <input
                                 type="file"
                                 accept="image/*"
                                 ref={fileInputRef}
@@ -120,7 +136,7 @@ const CreateCampaign = () => {
                         </div>
                         <div className="flex flex-col mb-10">
                             <label className="text-lg font-semibold mb-3">Mô tả</label>
-                            <textarea 
+                            <textarea
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 className="p-3 w-full h-80 rounded-2xl"
@@ -131,10 +147,10 @@ const CreateCampaign = () => {
                         <div className="flex flex-col mb-10">
                             <label className="text-lg font-semibold mb-3">Mục tiêu</label>
                             <div className="flex flex-row items-center">
-                                <input 
-                                    type="text" 
-                                    value={amount} 
-                                    onChange={handleAmountChange} 
+                                <input
+                                    type="text"
+                                    value={amount}
+                                    onChange={handleAmountChange}
                                     className="w-full p-4 text-orange-500 text-2xl font-semibold rounded-2xl"
                                 />
                                 <span className="text-xl font-bold text-[#f54a00] ml-4">VND</span>
@@ -143,7 +159,7 @@ const CreateCampaign = () => {
                         <div className="flex flex-row justify-between">
                             <div className="w-[50%] flex flex-col mb-10 pr-6">
                                 <label className="text-lg font-semibold mb-3">Ngày bắt đầu</label>
-                                <input 
+                                <input
                                     type="date"
                                     value={startDate}
                                     onChange={(e) => setStartDate(e.target.value)}
@@ -152,7 +168,7 @@ const CreateCampaign = () => {
                             </div>
                             <div className="w-[50%] flex flex-col mb-10 pl-6">
                                 <label className="text-lg font-semibold mb-3">Ngày kết thúc</label>
-                                <input 
+                                <input
                                     type="date"
                                     value={endDate}
                                     onChange={(e) => setEndDate(e.target.value)}
@@ -171,11 +187,11 @@ const CreateCampaign = () => {
                                     {bankData.map((bank) => (
                                         <option key={bank.id} value={bank.bin}>{bank.name} ({bank.shortName})</option>
                                     ))}
-                                </select>   
+                                </select>
                             </div>
                             <div className="flex flex-col w-[50%] pl-6">
                                 <label className="text-lg font-semibold mb-3">Số tài khoản</label>
-                                <input 
+                                <input
                                     type="text"
                                     value={bankNo}
                                     onChange={(e) => setBankNo(e.target.value)}
@@ -183,7 +199,7 @@ const CreateCampaign = () => {
                                 />
                             </div>
                         </div>
-                        <button 
+                        <button
                             type="submit"
                             className="w-full text-white text-xl font-semibold p-4 rounded-full bg-gradient-to-r from-[#f54a00] to-[#f54a00b2]"
                             onClick={handleSubmit}
@@ -193,7 +209,7 @@ const CreateCampaign = () => {
                     </div>
                 </form>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }

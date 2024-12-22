@@ -38,7 +38,7 @@ body {
     }
 
     .center-content {
-        width: 40%;
+        width: 50%;
         display: flex;
 
         .header-nav {
@@ -46,9 +46,9 @@ body {
             display: flex;
             padding-inline-start: 0;
             margin-block-end: 0;
+            gap: 24px;
 
             li {
-                width: 100%;
                 height: 100%;
                 list-style: none;
                 margin: 0 12px;
