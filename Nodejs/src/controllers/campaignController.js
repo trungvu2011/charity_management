@@ -1,4 +1,4 @@
-import userService from '../services/campaignService';
+import campaignService from '../services/campaignService';
 
 let handleGetAllCampaigns = async (req, res) => {
     let data = await userService.getAllCampaigns();
@@ -24,7 +24,7 @@ let handleCreateNewCampaign = async (req, res) => {
     // Lưu đường dẫn ảnh (file path)
     data.img = `/uploads/${Date.now()}-${img.originalname}`;
 
-    let result = await userService.createNewCampaign(data);
+    let result = await campaignService.createNewCampaign(data);
     return res.status(200).json(result);
 }
 
