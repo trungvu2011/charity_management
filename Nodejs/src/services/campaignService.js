@@ -61,7 +61,7 @@ let getAllCampaigns = async () => {
                 campaigns[i].setDataValue('progress', Math.round(raisedAmount / campaigns[i].goal_amount * 100));
 
                 let remainingDays = campaigns[i].end_date ? Math.ceil((new Date(campaigns[i].end_date) - new Date()) / (1000 * 60 * 60 * 24)) : null;
-                campaigns[i].setDataValue('remainingDays', remainingDays);
+                campaigns[i].setDataValue('remainingDays', Math.max(remainingDays, 0));
             }
             resolve(campaigns);
         } catch (error) {
@@ -106,7 +106,7 @@ let getCampaignById = async (campaignId) => {
             campaign.setDataValue('progress', Math.round(raisedAmount / campaign.goal_amount * 100));
 
             let remainingDays = campaign.end_date ? Math.ceil((new Date(campaign.end_date) - new Date()) / (1000 * 60 * 60 * 24)) : null;
-            campaign.setDataValue('remainingDays', remainingDays);
+            campaign.setDataValue('remainingDays', Math.max(remainingDays, 0));
 
             resolve(campaign);
         } catch (error) {

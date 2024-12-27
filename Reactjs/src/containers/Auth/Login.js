@@ -43,6 +43,7 @@ class Login extends Component {
                 })
             }
             if (data && data.errCode === 0) {
+                console.log(data.user);
                 localStorage.setItem('userInfo', JSON.stringify(data.user));
                 this.props.navigate('/home');
             }

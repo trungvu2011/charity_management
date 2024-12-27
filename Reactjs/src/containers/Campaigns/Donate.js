@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import HomeHeader from '../Homepage/Header/HomeHeader';
 import Footer from '../Footer/Footer'
 import axios from 'axios';
 
 const Donate = () => {
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+
+    useEffect(() => {
+        console.log(user);
+        if (!user) {
+            window.location.href = '/login';
+        }
+    }, []);
+
     const { state } = useLocation();
     const campaign = state?.campaign;
     const [amount, setAmount] = useState('');
@@ -49,7 +58,7 @@ const Donate = () => {
             amount: amount.replace(/\./g, ''), // Remove dots when sending data
             message: message,
             campaign_id: campaign.campaign_id,
-            user_id: campaign.user_id,
+            user_id: user.user_id
         };
 
         await axios.post('http://localhost:8080/api/create-new-donation', data)
@@ -175,7 +184,7 @@ const Donate = () => {
                             <input
                                 id="name"
                                 type="text"
-                                value={name}
+                                value={user.lastName + ' ' + user.firstName}
                                 className="mt-2 w-full p-3 border border-gray-300 rounded-2xl focus:ring-orange-500 focus:border-orange-500"
                                 readOnly
                             />
@@ -186,7 +195,7 @@ const Donate = () => {
                             <input
                                 id="email"
                                 type="email"
-                                value={email}
+                                value={user.email}
                                 className="mt-2 w-full p-3 border border-gray-300 rounded-2xl focus:ring-orange-500 focus:border-orange-500"
                                 readOnly
                             />

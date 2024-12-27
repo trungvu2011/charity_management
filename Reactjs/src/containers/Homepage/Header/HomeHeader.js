@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import SearchBar from './SearchBar';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class HomeHeader extends Component {
     constructor(props) {
@@ -12,8 +13,17 @@ class HomeHeader extends Component {
             isMenuOpen: false,
             isNotiOpen: false,
             notifications: [],
+            searchQuery: '',
         };
     }
+
+    handleSearch = () => {
+        const { searchQuery } = this.state;
+        if (searchQuery.trim()) {
+            const query = encodeURIComponent(searchQuery);
+            this.props.history.push(`/campaigns?search=${query}`);
+        }
+    };
 
     componentDidMount() {
         // Lấy thông tin người dùng từ localStorage
@@ -92,14 +102,27 @@ class HomeHeader extends Component {
                     </div>
                     <div className='center-content'>
                         <ul className='header-nav'>
-                            <li><a href='/'>Giới thiệu</a></li>
+                            <li><a href='/home'>Trang chủ</a></li>
                             <li><a href='/campaigns'>Chiến dịch</a></li>
-                            <li><a href='/create-campaign'>Tạo chiến dịch mới</a></li>
                         </ul>
                     </div>
                     <div className='right-content'>
+                        <button
+                            className='rounded-lg h-12 w-40	 text-white bg-[linear-gradient(88.87deg,_#ff6c57_-5.14%,_#ff922e_119.29%)] text-lg font-semibold'
+                            onClick={
+                                () => {
+                                    window.location.href = '/create-campaign';
+                                }
+                            }
+                        >
+                            Tạo chiến dịch
+                        </button>
+
                         <div className='header-search'>
-                            <SearchBar />
+                            <SearchBar
+                                onChange={(e) => this.setState({ searchQuery: e.target.value })}
+                                onKeyPress={(e) => e.key === 'Enter' && this.handleSearch()}
+                            />
                         </div>
 
                         {isLoggedIn && userInfo ? (

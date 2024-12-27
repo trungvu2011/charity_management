@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom'; // Import useLocation để lấy query parameters
 import Banner from "../Homepage/Banner/Banner";
 import HomeHeader from "../Homepage/Header/HomeHeader";
 import Footer from "../Footer/Footer";
@@ -14,6 +15,16 @@ const Campaigns = () => {
     const [error, setError] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
 
+    const location = useLocation(); // Hook để lấy thông tin URL
+
+    // Lấy từ khóa tìm kiếm từ URL
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const query = params.get('search') || ''; // Nếu không có tham số, mặc định là ''
+        setSearchQuery(query);
+    }, [location.search]);
+
+    // Fetch danh sách chiến dịch
     useEffect(() => {
         const fetchCampaigns = async () => {
             try {
@@ -23,11 +34,12 @@ const Campaigns = () => {
             } catch (error) {
                 setError(error);
             }
-        }
+        };
 
         fetchCampaigns();
     }, []);
 
+    // Lọc chiến dịch theo các tiêu chí
     useEffect(() => {
         const filterCampaigns = () => {
             let filtered = campaigns;
@@ -81,9 +93,7 @@ const Campaigns = () => {
                         <select name="status" id="" className="h-full pl-4 pt-2 pb-2 pr-8 mr-6 rounded-lg" onChange={handleStatusChange}>
                             <option value="Tất cả">Tất cả</option>
                             <option value="Đang thực hiện">Đang thực hiện</option>
-                            {/* <option value="Đạt mục tiêu">Đạt mục tiêu</option> */}
                             <option value="Đã kết thúc">Đã kết thúc</option>
-                            {/* <option value="Tạm dừng">Tạm dừng</option> */}
                         </select>
                     </div>
                     <div className="w-[40%]">
@@ -112,13 +122,13 @@ const Campaigns = () => {
                 </div>
                 <div className='flex flex-row flex-wrap mb-8'>
                     {filteredCampaigns.map((campaign) => {
-                        return <CampaignCard key={campaign.campaign_id} campaign={campaign} />
+                        return <CampaignCard key={campaign.campaign_id} campaign={campaign} />;
                     })}
                 </div>
             </div>
             <Footer />
         </div>
     );
-}
+};
 
 export default Campaigns;

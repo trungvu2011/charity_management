@@ -62,6 +62,7 @@ const CampaignDetail = () => {
     });
 
     const renderDonationInfo = () => {
+        filteredDonations.reverse();
         return (
             <table className="min-w-full table-auto border-collapse">
                 <thead>
@@ -193,14 +194,21 @@ const CampaignDetail = () => {
                                 </div>
                                 <span className="text-base font-semibold text-[#6f6f6f]">{campaign.progress} %</span>
                             </div>
-                            <Link to={{
-                                pathname: `/donate/id=${campaign.campaign_id}`, // Điều hướng đến trang ủng hộ
-                                state: { campaign } // Truyền dữ liệu campaign qua state
-                            }}>
-                                <button className="w-full bg-gradient-to-r from-[#f54a00] to-[#ff9252] text-xl text-white font-bold rounded-full p-4 mt-4 hover:bg-[#f54a0033]">
-                                    Ủng hộ
-                                </button>
-                            </Link>
+                            {campaign.remainingDays > 0 && (
+                                <Link to={{
+                                    pathname: `/donate/id=${campaign.campaign_id}`, // Điều hướng đến trang ủng hộ
+                                    state: { campaign } // Truyền dữ liệu campaign qua state
+                                }}>
+                                    <button className="w-full bg-gradient-to-r from-[#f54a00] to-[#ff9252] text-xl text-white font-bold rounded-full p-4 mt-4 hover:bg-[#f54a0033]">
+                                        Ủng hộ
+                                    </button>
+                                </Link>
+                            ) || (
+                                    <button className="w-full text-xl border-[#f54a00] border-1 text-[#f54a00] font-bold rounded-full p-4 mt-4 cursor-not-allowed">
+                                        Chia sẻ
+                                    </button>
+                                )
+                            }
                         </div>
                     </div>
                     <div className="flex flex-col rounded-2xl bg-white shadow-lg">
