@@ -34,7 +34,6 @@ class HomeHeader extends Component {
 
         const parsedUserInfo = JSON.parse(userInfo);
         const userId = parsedUserInfo ? parsedUserInfo.user_id : null;
-        console.log(userId);
 
         // Lấy thông tin người dùng từ server
         axios.get('http://localhost:8080/api/get-notifications', {
@@ -44,7 +43,6 @@ class HomeHeader extends Component {
         })
             .then(response => {
                 this.setState({ notifications: response.data.data });
-                console.log('notifications', this.state.notifications);
             })
             .catch(error => {
                 console.log(error);
@@ -108,7 +106,7 @@ class HomeHeader extends Component {
                     </div>
                     <div className='right-content'>
                         <button
-                            className='rounded-lg h-12 w-40	 text-white bg-[linear-gradient(88.87deg,_#ff6c57_-5.14%,_#ff922e_119.29%)] text-lg font-semibold'
+                            className='rounded-lg h-12 w-40 text-white bg-[linear-gradient(88.87deg,_#ff6c57_-5.14%,_#ff922e_119.29%)] text-lg font-semibold'
                             onClick={
                                 () => {
                                     window.location.href = '/create-campaign';

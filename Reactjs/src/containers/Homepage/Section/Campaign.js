@@ -61,7 +61,7 @@ class Campaign extends Component {
                     <img src={imgSrc} alt="" className='w-full h-[300px] object-cover rounded-t-xl mb-3' />
                     <div className='absolute bg-[#f4f4f4] top-4 left-2 rounded-full pt-2 pb-2 pl-3 pr-3'>
                         <span className='text-black text-sm font-medium'>
-                            {campaign.remainingDays === 0 ? 'Đã kết thúc' : `Còn ${campaign.remainingDays} ngày`}
+                            {campaign.status === 0 ? `Còn ${campaign.remainingDays} ngày` : campaign.status === 1 ? 'Đã kết thúc' : 'Đạt mục tiêu'}
                         </span>
                     </div>
                     <span className='w-full p-3 text-black text-xl font-extrabold truncate'>{campaign.title}</span>

@@ -39,12 +39,12 @@ class Login extends Component {
             let data = await handleLoginApi(this.state.email, this.state.password);
             if (data && data.errCode !== 0) {
                 this.setState({
-                    errMessage: data.message
+                    errMessage: data.errMessage
                 })
             }
             if (data && data.errCode === 0) {
-                console.log(data.user);
                 localStorage.setItem('userInfo', JSON.stringify(data.user));
+                alert('Đăng nhập thành công!');
                 this.props.navigate('/home');
             }
         } catch (error) {
@@ -88,6 +88,11 @@ class Login extends Component {
                                 <i className={this.state.isShowPassword ? "far fa-eye" : "far fa-eye-slash"} />
                             </span>
                         </div>
+                        {this.state.errMessage && (
+                            <div className="error-message text-red mt-2">
+                                {this.state.errMessage}
+                            </div>
+                        )}
                         <div className='forgot-password'>
                             <a href='/forgot-password'>Quên mật khẩu</a>
                         </div>

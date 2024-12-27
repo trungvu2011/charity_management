@@ -18,7 +18,7 @@ const CampaignCard = ({ campaign }) => {
             <img src={imgSrc} alt="" className='w-full h-[300px] object-cover rounded-t-xl' />
             <div className='absolute bg-[#f4f4f4] top-4 left-2 rounded-full pt-2 pb-2 pl-3 pr-3'>
                 <span className='text-black text-sm font-medium'>
-                    {campaign.remainingDays === 0 ? 'Đã kết thúc' : `Còn ${campaign.remainingDays} ngày`}
+                    {campaign.status === 0 ? `Còn ${campaign.remainingDays} ngày` : campaign.status === 1 ? 'Đã kết thúc' : 'Đạt mục tiêu'}
                 </span>
             </div>
             <span className='p-3 text-black text-xl font-extrabold truncate'>{campaign.title}</span>
@@ -42,7 +42,7 @@ const CampaignCard = ({ campaign }) => {
             </div>
             <div className='flex flex-row pl-3 pr-3 pb-3 justify-between'>
                 <div className='flex flex-row'>
-                    <span className='text-base text-gray-500'>Của mục tiêu {campaign.goal_amount} VND</span>
+                    <span className='text-base text-gray-500'>Của mục tiêu {formatCurrency(campaign.goal_amount)} VND</span>
                 </div>
             </div>
         </Link>

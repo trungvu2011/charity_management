@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       status: {
-        type: Sequelize.BOOLEAN // 0 = inactive, 1 = active
+        type: Sequelize.INTEGER // 0 = Đang thực hiện, 1 = Đã kết thúc, 2 = Đạt mục tiêu
       },
       BANK_ID: {
         type: Sequelize.STRING,

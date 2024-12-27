@@ -193,13 +193,12 @@
                 width: 32px !important;
                 left: -40px !important;
                 border-radius: 50%;
-                background-color: #fecb98 !important;
             }
 
             .slick-prev::before,
             .slick-next::before {
-                font-family: FontAwesome !important;
-                color: #ca5c29da !important;
+                color: #fecb98 !important;
+                font-size: 32px !important;
             }
 
             .slick-next {
@@ -207,8 +206,9 @@
                 width: 32px !important;
                 right: -40px !important;
                 border-radius: 50%;
-                background-color: #fecb98 !important;
             }
         }
     }
+
+
 }

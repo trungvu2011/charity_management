@@ -179,7 +179,7 @@ const CampaignDetail = () => {
                                     <div className="flex flex-col">
                                         <span className="text-base font-semibold text-[#6f6f6f]">Thời gian còn lại</span>
                                         <span className="text-xl font-semibold">
-                                            {campaign.remainingDays === 0 ? 'Đã kết thúc' : `${campaign.remainingDays} ngày`}
+                                            {campaign.status === 1 ? 'Đã kết thúc' : campaign.status === 2 ? 'Đạt mục tiêu' : `${campaign.remainingDays} ngày`}
                                         </span>
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@ const CampaignDetail = () => {
                                 </div>
                                 <span className="text-base font-semibold text-[#6f6f6f]">{campaign.progress} %</span>
                             </div>
-                            {campaign.remainingDays > 0 && (
+                            {campaign.status === 0 && (
                                 <Link to={{
                                     pathname: `/donate/id=${campaign.campaign_id}`, // Điều hướng đến trang ủng hộ
                                     state: { campaign } // Truyền dữ liệu campaign qua state

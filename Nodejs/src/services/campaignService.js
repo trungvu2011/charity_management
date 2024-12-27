@@ -117,24 +117,51 @@ let getCampaignById = async (campaignId) => {
 
 let updateNotificationOfCampaign = async () => {
     try {
+        console.log("Update notification of campaign");
         let campaigns = await db.Campaign.findAll({
             where: {
-                status: 1,  // Trạng thái chiến dịch là 1
-                end_date: { [Op.lt]: new Date() }  // end_date nhỏ hơn thời gian hiện tại
+                status: 0,  // Trạng thái chiến dịch là 0
             },
         });
         campaigns.forEach(async (campaign) => {
-            await db.Campaign.update({
-                status: 0  // Cập nhật trạng thái chiến dịch thành 0 (đã kết thúc)
-            }, {
-                where: { campaign_id: campaign.campaign_id }
-            });
-            // Tạo thông báo cho người tạo chiến dịch
-            await db.Notification.create({
-                user_id: campaign.user_id,
-                campaign_id: campaign.campaign_id,
-                noti: `Chiến dịch ${campaign.title} đã kết thúc`
-            });
+            // Kiểm tra xem chiến dịch đã kết thúc chưa
+            if (new Date(campaign.end_date) <= new Date()) {
+                await db.Campaign.update({
+                    status: 1  // Cập nhật trạng thái chiến dịch thành 1 (đã kết thúc)
+                }, {
+                    where: { campaign_id: campaign.campaign_id }
+                });
+                // Tạo thông báo cho người tạo chiến dịch
+                await db.Notification.create({
+                    user_id: campaign.user_id,
+                    campaign_id: campaign.campaign_id,
+                    noti: `Chiến dịch ${campaign.title} đã kết thúc`
+                });
+            } else {
+                // Kiểm tra số tiền
+                let donations = await db.Donation.findAll({
+                    where: { campaign_id: campaign.campaign_id },
+                    attributes: ['amount']
+                });
+                let raisedAmount = 0;
+                for (let j = 0; j < donations.length; j++) {
+                    raisedAmount += donations[j].amount;
+                }
+                if (raisedAmount >= campaign.goal_amount) {
+                    await db.Campaign.update({
+                        status: 2  // Cập nhật trạng thái chiến dịch thành 2 (đã đạt mục tiêu)
+                    }, {
+                        where: { campaign_id: campaign.campaign_id }
+                    });
+
+                    // Tạo thông báo cho người tạo chiến dịch
+                    await db.Notification.create({
+                        user_id: campaign.user_id,
+                        campaign_id: campaign.campaign_id,
+                        noti: `Chiến dịch ${campaign.title} đã đạt mục tiêu`
+                    });
+                }
+            }
         });
 
     } catch (error) {

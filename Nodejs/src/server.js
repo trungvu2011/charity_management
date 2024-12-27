@@ -31,8 +31,10 @@ db.sequelize.authenticate()
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
-
-updateNotificationOfCampaign();
+setInterval(() => {
+    console.log("Update notification of campaign");
+    updateNotificationOfCampaign();
+}, 30000); // 30s
 
 
 let port = process.env.PORT || 6969;

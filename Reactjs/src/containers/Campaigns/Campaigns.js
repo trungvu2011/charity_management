@@ -31,6 +31,7 @@ const Campaigns = () => {
                 const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
                 setCampaigns(response.data);
                 setFilteredCampaigns(response.data);
+                console.log(campaigns);
             } catch (error) {
                 setError(error);
             }
@@ -50,11 +51,16 @@ const Campaigns = () => {
                 );
             }
 
-            if (status !== 'Tất cả') {
-                filtered = filtered.filter(campaign =>
-                    status === 'Đang thực hiện' ? campaign.status === true : campaign.status === false
-                );
-            }
+            filtered = filtered.filter(campaign => {
+                // 0 : Đang thực hiện, 1: Đã kết thúc, 2: Đạt mục tiêu
+                if (status === 'Đang thực hiện') {
+                    return campaign.status === 0;
+                } else if (status === 'Đã kết thúc') {
+                    return campaign.status === 1;
+                } else {
+                    return campaign.status === 2;
+                }
+            });
 
             if (searchQuery) {
                 filtered = filtered.filter(campaign => {
@@ -91,9 +97,9 @@ const Campaigns = () => {
                 <div className="flex flex-row justify-between mb-6">
                     <div className="flex flex-row items-start">
                         <select name="status" id="" className="h-full pl-4 pt-2 pb-2 pr-8 mr-6 rounded-lg" onChange={handleStatusChange}>
-                            <option value="Tất cả">Tất cả</option>
                             <option value="Đang thực hiện">Đang thực hiện</option>
                             <option value="Đã kết thúc">Đã kết thúc</option>
+                            <option value="Đạt mục tiêu">Đạt mục tiêu</option>
                         </select>
                     </div>
                     <div className="w-[40%]">

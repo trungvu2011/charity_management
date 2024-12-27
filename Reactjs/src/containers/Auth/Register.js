@@ -57,6 +57,7 @@ class Register extends Component {
                 this.setState({ errMessage: data.errMessage });
             }
             if (data && data.errCode === 0) {
+                alert('Đăng ký thành công!');
                 // this.props.userRegisterSuccess(data);
                 this.props.navigate('/login');
             }
