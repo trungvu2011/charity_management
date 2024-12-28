@@ -133,7 +133,9 @@ const CampaignDetail = () => {
                     <div className="mt-4">
                         {tab === 'Câu chuyện' && (
                             <div>
-                                <p className="mt-4 text-lg text-[#0a0a0a]">{campaign?.description}</p>
+                                <p className="mt-4 text-lg text-[#0a0a0a]">{campaign?.description.split('\n').map((line, index) => (
+                                    <p key={index}>{line}</p>
+                                ))}</p>
                             </div>
                         )}
                         {tab === 'Danh sách ủng hộ' && (
