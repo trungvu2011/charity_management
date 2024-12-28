@@ -11,7 +11,7 @@ class Introduction extends Component {
             <div className="introduction-container">
                 <div className="general-introduction row">Giới thiệu chung</div>
                 <div className="orange-line row">_________________</div>
-                <div className="introduction-paragraph row">Giải pháp công nghệ tích hợp bao gồm App Thiện Nguyện và tài khoản thiện nguyện minh bạch 4 số, dành tặng các tổ chức, cá nhân vận động gây quỹ vì cộng đồng. Giải pháp là cấu phần thuộc Đề án Hệ tri thức Việt số hoá (iTrithuc)</div>
+                <div className="introduction-paragraph row"></div>
                 <div className="introduction-item-container row">
                     <div className="introduction-item col-third">
                         <img src={item1} alt="" className="item-img" />
