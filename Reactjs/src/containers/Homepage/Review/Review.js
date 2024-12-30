@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import reviewImg from '../../../assets/review/vuducdam.jpg';
-import axios from 'axios';
+import axios from '../../../axios';
 
 class Review extends Component {
 
@@ -23,10 +23,11 @@ class Review extends Component {
 
 
     getReviewList = () => {
-        axios.get('http://localhost:8080/api/get-all-review')
+        axios.get('/api/get-all-review')
             .then(response => {
+                console.log('reviewList:', response);
                 this.setState({
-                    reviewList: response.data
+                    reviewList: response
                 })
             })
             .catch(error => {
@@ -35,7 +36,7 @@ class Review extends Component {
     }
 
     renderReviewCard = () => {
-        return this.state.reviewList.map((review, index) => {
+        return this.state.reviewList ? this.state.reviewList.map((review, index) => {
             return (
                 <div className='review-card' key={index}>
                     <div className='card-top'>
@@ -51,7 +52,7 @@ class Review extends Component {
                     <div className='custom-shape'></div>
                 </div>
             )
-        })
+        }) : null;
     }
 
     render() {

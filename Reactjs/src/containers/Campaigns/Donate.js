@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import HomeHeader from '../Homepage/Header/HomeHeader';
 import Footer from '../Footer/Footer'
-import axios from 'axios';
+import axios from '../../axios';
 
 const Donate = () => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
@@ -61,7 +61,7 @@ const Donate = () => {
             user_id: user.user_id
         };
 
-        await axios.post('http://localhost:8080/api/create-new-donation', data)
+        await axios.post('/api/create-new-donation', data)
             .then((res) => {
                 console.log(res);
                 alert('Cảm ơn bạn đã ủng hộ chiến dịch');

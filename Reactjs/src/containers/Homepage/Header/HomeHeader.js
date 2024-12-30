@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import SearchBar from './SearchBar';
-import axios from 'axios';
+import axios from '../../../axios';
 import { withRouter } from 'react-router-dom';
 
 class HomeHeader extends Component {
@@ -36,13 +36,13 @@ class HomeHeader extends Component {
         const userId = parsedUserInfo ? parsedUserInfo.user_id : null;
 
         // Lấy thông tin người dùng từ server
-        axios.get('http://localhost:8080/api/get-notifications', {
+        axios.get('/api/get-notifications', {
             params: {
                 user_id: userId
             }
         })
             .then(response => {
-                this.setState({ notifications: response.data.data });
+                this.setState({ notifications: response.data });
             })
             .catch(error => {
                 console.log(error);

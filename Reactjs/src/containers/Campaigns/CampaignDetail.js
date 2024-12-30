@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from '../../axios';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import HomeHeader from "../Homepage/Header/HomeHeader";
@@ -22,12 +22,12 @@ const CampaignDetail = () => {
     useEffect(() => {
         const fetchCampaignById = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/get-campaign-by-id', {
+                const response = await axios.get('/api/get-campaign-by-id', {
                     params: {
                         id: location.pathname.split('=')[1] // Truyền tham số qua params
                     }
                 });
-                setCampaign(response.data); // Cập nhật thông tin chiến dịch
+                setCampaign(response); // Cập nhật thông tin chiến dịch
             } catch (error) {
                 console.error(error);
             }
@@ -40,7 +40,7 @@ const CampaignDetail = () => {
         const fetchDonationInfo = async () => {
             try {
                 if (campaign?.campaign_id) {
-                    const response = await axios.get('http://localhost:8080/api/get-donation-information/', {
+                    const response = await axios.get('/api/get-donation-information/', {
                         params: {
                             campaign_id: campaign.campaign_id // Truyền tham số qua params
                         }
