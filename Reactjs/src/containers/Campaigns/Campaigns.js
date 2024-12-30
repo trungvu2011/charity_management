@@ -29,8 +29,8 @@ const Campaigns = () => {
         const fetchCampaigns = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
-                setCampaigns(response.data);
-                setFilteredCampaigns(response.data);
+                setCampaigns(response);
+                setFilteredCampaigns(response);
             } catch (error) {
                 setError(error);
             }
@@ -39,14 +39,12 @@ const Campaigns = () => {
         fetchCampaigns();
     }, []);
 
-    console.log(campaigns);
 
     // Lọc chiến dịch theo các tiêu chí
     useEffect(() => {
         const filterCampaigns = () => {
             let filtered = campaigns;
 
-            // console.log(filtered);
 
             filtered = filtered.filter(campaign =>
                 contributorType === 'Tổ chức' ? campaign.type === true : campaign.type === false

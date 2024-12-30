@@ -3,6 +3,7 @@ import HomeHeader from "../Homepage/Header/HomeHeader";
 import Footer from "../Footer/Footer";
 import { HiDocumentAdd } from "react-icons/hi";
 import axios from "../../axios";
+import axiosOriginal from 'axios';
 
 const CreateCampaign = () => {
     const fileInputRef = useRef(null);
@@ -20,7 +21,7 @@ const CreateCampaign = () => {
 
     useEffect(async () => {
         try {
-            const response = await axios.get('https://api.vietqr.io/v2/banks');
+            const response = await axiosOriginal.get('https://api.vietqr.io/v2/banks');
             setBankData(response.data.data);
         } catch (error) {
             console.error(error);
@@ -73,7 +74,7 @@ const CreateCampaign = () => {
         formData.append('goal_amount', amount.replace(/\./g, ''));
         formData.append('start_date', startDate);
         formData.append('end_date', endDate);
-        formData.append('status', 1);
+        formData.append('status', 0);
         formData.append('BANK_ID', bankId);
         formData.append('BANK_NO', bankNo);
 
@@ -87,10 +88,10 @@ const CreateCampaign = () => {
             .then((response) => {
                 // console.log('data ', response);
                 alert("Tạo chiến dịch thành công!");
-                window.location.href = '/campaign/id=' + response.data.newCampaign.campaign_id;
+                window.location.href = '/campaign/id=' + response.newCampaign.campaign_id;
             }).catch((error) => {
-                // console.error(error);
-                alert("Đã xảy ra lỗi khi tạo chiến dịch!");
+                console.error(error);
+                // alert("Đã xảy ra lỗi khi tạo chiến dịch!");
             });
     }
 
