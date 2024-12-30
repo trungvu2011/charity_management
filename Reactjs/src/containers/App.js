@@ -21,6 +21,7 @@ import CustomScrollbars from '../components/CustomScrollbars';
 import Campaigns from './Campaigns/Campaigns.js';
 import CampaignDetail from './Campaigns/CampaignDetail.js';
 import CreateCampaign from './Campaigns/CreateCampaign.js';
+import axios from '../axios';
 
 class App extends Component {
 
@@ -58,7 +59,7 @@ class App extends Component {
                                     <Route path={path.REGISTER} component={userIsNotAuthenticated(Register)} />
                                     <Route path={path.CAMPAIGNS} component={Campaigns} />
                                     <Route path={path.CAMPAIGNDETAIL} component={CampaignDetail} />
-                                    <Route path={path.CREATECAMPAIGN} component={CreateCampaign}/>
+                                    <Route path={path.CREATECAMPAIGN} component={CreateCampaign} />
                                     <Route path={path.HOMEPAGE} component={(HomePage)} />
                                     <Route path={path.USER_EDIT} component={(UserEditPage)} />
                                     <Route path={path.DONATE} component={(Donate)} />

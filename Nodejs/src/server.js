@@ -11,8 +11,9 @@ let db = require('./models');
 
 let app = express();
 app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: 'GET, POST, PUT, DELETE',
+    origin: ['http://localhost', 'http://localhost:3000'], // Thêm tất cả nguồn gốc cần thiết
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // Nếu cần gửi cookie
 }));
 //config app
 

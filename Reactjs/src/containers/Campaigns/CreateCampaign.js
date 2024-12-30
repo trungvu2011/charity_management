@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import HomeHeader from "../Homepage/Header/HomeHeader";
 import Footer from "../Footer/Footer";
 import { HiDocumentAdd } from "react-icons/hi";
-import axios from "axios";
+import axios from "../../axios";
 
 const CreateCampaign = () => {
     const fileInputRef = useRef(null);
@@ -79,7 +79,7 @@ const CreateCampaign = () => {
 
         // console.log('Data: ', ...formData);
 
-        await axios.post('http://localhost:8080/api/create-new-campaign', formData, {
+        await axios.post('/api/create-new-campaign', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

@@ -4,7 +4,7 @@ import Banner from "../Homepage/Banner/Banner";
 import HomeHeader from "../Homepage/Header/HomeHeader";
 import Footer from "../Footer/Footer";
 import { HiOutlineSearch } from "react-icons/hi";
-import axios from 'axios';
+import axios from '../../axios';
 import CampaignCard from './CampaignCard';
 
 const Campaigns = () => {
@@ -28,9 +28,9 @@ const Campaigns = () => {
     useEffect(() => {
         const fetchCampaigns = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
-                setCampaigns(response.data);
-                setFilteredCampaigns(response.data);
+                const response = await axios.get(`/api/get-all-campaigns`);
+                setCampaigns(response);
+                setFilteredCampaigns(response);
                 console.log(campaigns);
             } catch (error) {
                 setError(error);
@@ -45,11 +45,11 @@ const Campaigns = () => {
         const filterCampaigns = () => {
             let filtered = campaigns;
 
-            if (contributorType !== 'Tất cả') {
-                filtered = filtered.filter(campaign =>
-                    contributorType === 'Tổ chức' ? campaign.type === true : campaign.type === false
-                );
-            }
+            // console.log(filtered);
+
+            filtered = filtered.filter(campaign =>
+                contributorType === 'Tổ chức' ? campaign.type === true : campaign.type === false
+            );
 
             filtered = filtered.filter(campaign => {
                 // 0 : Đang thực hiện, 1: Đã kết thúc, 2: Đạt mục tiêu
@@ -79,7 +79,7 @@ const Campaigns = () => {
     const handleStatusChange = async (e) => {
         try {
             setStatus(e.target.value);
-            const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
+            const response = await axios.get(`/get-all-campaigns`);
             setCampaigns(response.data);
         } catch (error) {
             setError(error);
