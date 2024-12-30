@@ -31,7 +31,6 @@ const Campaigns = () => {
                 const response = await axios.get(`http://localhost:8080/api/get-all-campaigns`);
                 setCampaigns(response.data);
                 setFilteredCampaigns(response.data);
-                console.log(campaigns);
             } catch (error) {
                 setError(error);
             }
@@ -39,6 +38,8 @@ const Campaigns = () => {
 
         fetchCampaigns();
     }, []);
+
+    console.log(campaigns);
 
     // Lọc chiến dịch theo các tiêu chí
     useEffect(() => {

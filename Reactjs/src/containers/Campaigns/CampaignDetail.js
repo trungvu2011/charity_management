@@ -187,7 +187,7 @@ const CampaignDetail = () => {
                                 </div>
                             </div>
                             <div className="mt-4 rounded-full bg-gray-300 h-3">
-                                <div className="bg-[#f54a00] h-3 rounded-full" style={{ width: `${campaign.progress}%` }}></div>
+                                <div className="bg-[#f54a00] h-3 rounded-full max-w-full" style={{ width: `${campaign.progress}%` }}></div>
                             </div>
                             <div className="flex flex-row justify-between mt-4">
                                 <div className="flex flex-row items-center">

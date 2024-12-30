@@ -44,7 +44,6 @@ class Login extends Component {
             }
             if (data && data.errCode === 0) {
                 localStorage.setItem('userInfo', JSON.stringify(data.user));
-                alert('Đăng nhập thành công!');
                 this.props.navigate('/home');
             }
         } catch (error) {

@@ -37,7 +37,7 @@ const CampaignCard = ({ campaign }) => {
             </div>
             <div className='pl-3 pr-3 pb-3'>
                 <div className='relative w-full h-2 bg-gray-300 rounded-full'>
-                    <div className='absolute h-2 bg-[#f54a00] rounded-full' style={{ width: `${campaign.progress}%` }}></div>
+                    <div className='absolute h-2 bg-[#f54a00] rounded-full max-w-full' style={{ width: `${campaign.progress}%` }}></div>
                 </div>
             </div>
             <div className='flex flex-row pl-3 pr-3 pb-3 justify-between'>
